@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\prog_systeme_form",
     "\\test"
   ],
-  "SelectedNode": "\\test\\Program.cs",
+  "SelectedNode": "\\prog_systeme_form\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
