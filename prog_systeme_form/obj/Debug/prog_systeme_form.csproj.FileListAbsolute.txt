@@ -1,0 +1,9 @@
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\prog_systeme_form\bin\Debug\prog_systeme_form.exe
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\prog_systeme_form\bin\Debug\prog_systeme_form.pdb
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\prog_systeme_form\obj\Debug\prog_systeme_form.csproj.AssemblyReference.cache
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\prog_systeme_form\obj\Debug\prog_systeme_form.fichiers_d_en_tête.Acceuil.resources
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\prog_systeme_form\obj\Debug\prog_systeme_form.Properties.Resources.resources
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\prog_systeme_form\obj\Debug\prog_systeme_form.csproj.GenerateResource.cache
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\prog_systeme_form\obj\Debug\prog_systeme_form.csproj.CoreCompileInputs.cache
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\prog_systeme_form\obj\Debug\prog_systeme_form.exe
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\prog_systeme_form\obj\Debug\prog_systeme_form.pdb
