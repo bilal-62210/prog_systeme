@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using prog_systeme_form.fichiers_d_en_tête;
 
 namespace prog_systeme_form
 {
@@ -15,7 +16,7 @@ namespace prog_systeme_form
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Acceuil());
         }
     }
 }
