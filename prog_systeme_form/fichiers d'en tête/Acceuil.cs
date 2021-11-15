@@ -15,5 +15,25 @@ namespace prog_systeme_form.fichiers_d_en_tête
         {
             InitializeComponent();
         }
+
+        private void Acceuil_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_bienvenue_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_langue_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
