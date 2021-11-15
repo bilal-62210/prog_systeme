@@ -42,10 +42,10 @@ namespace prog_systeme_form.fichiers_d_en_tête
             // 
             this.txt_bienvenue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_bienvenue.Font = new System.Drawing.Font("Elephant", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_bienvenue.Location = new System.Drawing.Point(851, 215);
+            this.txt_bienvenue.Location = new System.Drawing.Point(1039, 215);
             this.txt_bienvenue.Multiline = true;
             this.txt_bienvenue.Name = "txt_bienvenue";
-            this.txt_bienvenue.Size = new System.Drawing.Size(466, 76);
+            this.txt_bienvenue.Size = new System.Drawing.Size(278, 76);
             this.txt_bienvenue.TabIndex = 2;
             this.txt_bienvenue.Text = "Bienvenue sur votre logiciel de sauvegarde by ProSoft \r\n\r\n Welcome on your save b" +
     "y ProSoft";
@@ -55,7 +55,7 @@ namespace prog_systeme_form.fichiers_d_en_tête
             // 
             this.txt_langue.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_langue.Font = new System.Drawing.Font("Elephant", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_langue.Location = new System.Drawing.Point(518, 483);
+            this.txt_langue.Location = new System.Drawing.Point(518, 527);
             this.txt_langue.Multiline = true;
             this.txt_langue.Name = "txt_langue";
             this.txt_langue.Size = new System.Drawing.Size(352, 61);
@@ -79,7 +79,7 @@ namespace prog_systeme_form.fichiers_d_en_tête
             // 
             this.btn_english.AutoSize = true;
             this.btn_english.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_english.Location = new System.Drawing.Point(518, 587);
+            this.btn_english.Location = new System.Drawing.Point(518, 643);
             this.btn_english.Name = "btn_english";
             this.btn_english.Size = new System.Drawing.Size(75, 21);
             this.btn_english.TabIndex = 5;
@@ -91,7 +91,7 @@ namespace prog_systeme_form.fichiers_d_en_tête
             // 
             this.btn_francais.AutoSize = true;
             this.btn_francais.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_francais.Location = new System.Drawing.Point(787, 587);
+            this.btn_francais.Location = new System.Drawing.Point(787, 643);
             this.btn_francais.Name = "btn_francais";
             this.btn_francais.Size = new System.Drawing.Size(83, 21);
             this.btn_francais.TabIndex = 6;
@@ -102,7 +102,7 @@ namespace prog_systeme_form.fichiers_d_en_tête
             // btn_valider
             // 
             this.btn_valider.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_valider.Location = new System.Drawing.Point(645, 669);
+            this.btn_valider.Location = new System.Drawing.Point(646, 722);
             this.btn_valider.Name = "btn_valider";
             this.btn_valider.Size = new System.Drawing.Size(92, 29);
             this.btn_valider.TabIndex = 7;
