@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO
+using System.IO;
 
 namespace appli_console
 {
@@ -36,15 +36,7 @@ namespace appli_console
                         var TypeSave = Console.ReadLine();
 
                         Console.Write(NameSave + ' ' + SourceSave + ' ' + TargetSave + ' ' + TypeSave);
-                        //Pass the filepath and filename to the StreamWriter Constructor
-                        StreamWriter sw = new StreamWriter("");
-                        //Write a line of text
-                        sw.WriteLine("Hello World!!");
-                        //Write a second line of text
-                        sw.WriteLine("From the StreamWriter class");
-                        //Close the file
-                        sw.Close();
-                        // result.Create(NameSave, SourceSave, TargetSave, TypeSave);
+                        result.Create(NameSave, SourceSave, TargetSave, TypeSave);
 
                         break;
                     case "m":
@@ -55,7 +47,7 @@ namespace appli_console
                         break;
                     case "r":
                         var liste = new sauvegarde();
-                        liste.List();
+                        liste.read();
                         break;
                     case "q":
                         etat = false;
