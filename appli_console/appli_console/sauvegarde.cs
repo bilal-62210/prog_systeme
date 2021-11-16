@@ -13,16 +13,8 @@ namespace appli_console
         protected string Type;
         protected Boolean Choix;
         protected int Temps;
-        protected int Nb = 0;
-        protected List<string> ListSave = new List<string>();
-
-        /*public void List()
-        {
-            for (int i = 0; i < ListSave.Count; i++)
-            {
-                Console.WriteLine(ListSave[i]);
-            }
-        }*/
+        protected static int Nb = 0;
+       
 
         public void read()
         {
@@ -57,28 +49,27 @@ namespace appli_console
 
         public void Create(string NameSave, string SourceSave, string TargetSave, string TypeSave)
         {
-            string path = @"C:\\prog_systeme\\test.txt";
-            string[] lines = { NameSave, SourceSave, TargetSave, TypeSave };
+            Name = NameSave;
+            Source = SourceSave;
+            Target = TargetSave;
+            Type = TypeSave;
+            Nb++;
+            if (Nb < 6)
+            {
+                string path = @"C:\\prog_systeme\\test.txt";
+                string[] lines = { NameSave, SourceSave, TargetSave, TypeSave };
 
-            foreach (string line in lines)
-            {
+                foreach (string line in lines)
+                {
+                    File.AppendAllText(path, "\n");
+                    File.AppendAllText(path, line);
+                }
                 File.AppendAllText(path, "\n");
-                File.AppendAllText(path, line);
-            }
-            File.AppendAllText(path, "\n");
-            /*Nb += 1;
-            if (Nb < 5)
-            {
-                ListSave.Add(NameSave);
-                ListSave.Add(SourceSave);
-                ListSave.Add(TargetSave);
-                ListSave.Add(TypeSave);
-                ListSave.Add("n");
             }
             else
             {
-                Environment.Exit(0);
-            }*/
+                Console.WriteLine("You can't create a new Save");
+            }
         }
         private void Modify(string NameSave, string SourceSave, string TargetSave, string TypeSave)
         {
