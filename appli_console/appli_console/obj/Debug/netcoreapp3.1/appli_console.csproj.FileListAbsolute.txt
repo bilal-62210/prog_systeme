@@ -1,0 +1,14 @@
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\bin\Debug\netcoreapp3.1\appli_console.exe
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\bin\Debug\netcoreapp3.1\appli_console.deps.json
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\bin\Debug\netcoreapp3.1\appli_console.runtimeconfig.json
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\bin\Debug\netcoreapp3.1\appli_console.runtimeconfig.dev.json
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\bin\Debug\netcoreapp3.1\appli_console.dll
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\bin\Debug\netcoreapp3.1\appli_console.pdb
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\obj\Debug\netcoreapp3.1\appli_console.csproj.AssemblyReference.cache
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\obj\Debug\netcoreapp3.1\appli_console.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\obj\Debug\netcoreapp3.1\appli_console.AssemblyInfoInputs.cache
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\obj\Debug\netcoreapp3.1\appli_console.AssemblyInfo.cs
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\obj\Debug\netcoreapp3.1\appli_console.csproj.CoreCompileInputs.cache
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\obj\Debug\netcoreapp3.1\appli_console.dll
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\obj\Debug\netcoreapp3.1\appli_console.pdb
+C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\appli_console\appli_console\obj\Debug\netcoreapp3.1\appli_console.genruntimeconfig.cache
