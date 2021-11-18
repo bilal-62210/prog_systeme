@@ -23,24 +23,24 @@ namespace appli_console
 
         public void read()
         {
-            String line;
+            //String line;
             try
             {
                 //Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader("C:\\prog_systeme\\test.txt");
+                StreamReader sr = new StreamReader("C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\save.json");
                 //Read the first line of text
-                line = sr.ReadLine();
+                string jsonString = sr.ReadToEnd();
                 //Continue to read until you reach end of file
-                while (line != null)
-                {
+                if (jsonString != null)
+                 {
+                    data_Save m = JsonConvert.DeserializeObject<data_Save>(jsonString);
                     //write the line to console window
-                    Console.WriteLine(line);
-                    //Read the next line
-                    line = sr.ReadLine();
-                }
-                //close the file
-                sr.Close();
-                Console.ReadLine();
+                    Console.WriteLine(jsonString);
+                     //Read the next line
+                 }
+                 //close the file
+                 sr.Close();
+                 Console.ReadLine();
             }
             catch (Exception e)
             {
@@ -59,14 +59,14 @@ namespace appli_console
             Target = TargetSave;
             Type = TypeSave;
 
-            string JsonPath = "C:\\Users\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\nbsave.json";
+            string JsonPath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\nbsave.json";
             AskForJsonFileName(JsonPath);
 
             var nbr = new JsonService();
             nbr.ReadJsonFile(JsonPath);
             if (Nb < 6)
             {
-                string jsonpath = "C:\\Users\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\save.json";
+                string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\save.json";
                 AskForJsonFileName(jsonpath);
                 data_Save save = new data_Save();
                 save.Nom = NameSave;
@@ -117,7 +117,7 @@ namespace appli_console
             {
                 dynamic jsonFile = JsonConvert.DeserializeObject(File.ReadAllText(jsonFileIn));
 
-                Nb = jsonFile["nbsave"];
+                Nb = jsonFile["NBSave"];
                 Nb++;
                 data_NBSave data = new data_NBSave();
                 data.NBSave = Nb;
