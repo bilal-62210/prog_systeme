@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Text.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 
 namespace appli_console
 {
@@ -13,7 +18,7 @@ namespace appli_console
         protected string Type;
         protected Boolean Choix;
         protected int Temps;
-        protected static int Nb = 0;
+        protected static int Nb;
        
 
         public void read()
@@ -53,18 +58,24 @@ namespace appli_console
             Source = SourceSave;
             Target = TargetSave;
             Type = TypeSave;
-            Nb++;
+
+            string JsonPath = "C:\\Users\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\nbsave.json";
+            AskForJsonFileName(JsonPath);
+
+            var nbr = new JsonService();
+            nbr.ReadJsonFile(JsonPath);
             if (Nb < 6)
             {
-                string path = @"C:\\prog_systeme\\test.txt";
-                string[] lines = { NameSave, SourceSave, TargetSave, TypeSave };
+                string jsonpath = "C:\\Users\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\save.json";
+                AskForJsonFileName(jsonpath);
+                data_Save save = new data_Save();
+                save.Nom = NameSave;
+                save.Source = SourceSave;
+                save.Cible = TargetSave;
+                save.Type = TypeSave;
+                string json = JsonConvert.SerializeObject(save);
+                File.AppendAllText(jsonpath, json);
 
-                foreach (string line in lines)
-                {
-                    File.AppendAllText(path, "\n");
-                    File.AppendAllText(path, line);
-                }
-                File.AppendAllText(path, "\n");
             }
             else
             {
@@ -87,5 +98,45 @@ namespace appli_console
         {
 
         }
+        public static string AskForJsonFileName(string JsonPath)
+        {
+        BEGIN:
+            if (File.Exists(JsonPath))
+            {
+                return JsonPath;
+            }
+            else
+            {
+                Console.Write("\nError : File doesn't exist!");
+                goto BEGIN;
+            }
+        }
+        public class JsonService
+        {
+            public void ReadJsonFile(string jsonFileIn)
+            {
+                dynamic jsonFile = JsonConvert.DeserializeObject(File.ReadAllText(jsonFileIn));
+
+                Nb = jsonFile["nbsave"];
+                Nb++;
+                data_NBSave data = new data_NBSave();
+                data.NBSave = Nb;
+                string json = JsonConvert.SerializeObject(data);
+                File.WriteAllText(jsonFileIn, json);
+            }
+        }
+        public class data_NBSave
+        {
+            public int NBSave { get; set; }
+        }
+        public class data_Save
+        {
+            public string Nom { get; set; }
+            public string Source { get; set; }
+            public string Cible { get; set; }
+            public string Type { get; set; }
+
+        }
     }
+
 }
