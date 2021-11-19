@@ -1,31 +1,23 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Text;
 
 namespace appli_console
 {
-    class Program
+    class viewmodel:model
     {
-        static void Main(string[] args)
+        public void demarrage()
         {
+            view view = new view();
             var etat = true;
 
             while (etat == true)
             {
-                // Ask the user to choose an option.
-                Console.WriteLine("Choose an option from the following list:");
-                Console.WriteLine("\ta - Add");
-                Console.WriteLine("\tm - Modify");
-                Console.WriteLine("\td - Delete");
-                Console.WriteLine("\tr - Read");
-                Console.WriteLine("\tq - Quit");
-                Console.Write("Your option : ");
-
+                view.debut();
                 // Use a switch statement to do the math.
                 switch (Console.ReadLine())
                 {
                     case "a":
-                        var result = new sauvegarde();
-
                         Console.Write("Name of the save : ");
                         var NameSave = Console.ReadLine();
                         Console.Write("Source of the save : ");
@@ -36,7 +28,7 @@ namespace appli_console
                         var TypeSave = Console.ReadLine();
 
                         Console.Write(NameSave + ' ' + SourceSave + ' ' + TargetSave + ' ' + TypeSave);
-                        result.Create(NameSave, SourceSave, TargetSave, TypeSave);
+                        Create(NameSave, SourceSave, TargetSave, TypeSave);
 
                         break;
                     case "m":
@@ -46,17 +38,15 @@ namespace appli_console
 
                         break;
                     case "r":
-                        var liste = new sauvegarde();
-                        liste.read();
+                        read();
                         break;
                     case "q":
                         etat = false;
                         break;
                 }
             }
-            // Wait for the user to respond before closing.
-            Console.Write("\n Press any key to close the Calculator console app...");
-            Console.ReadKey();
+            view.fin();
         }
     }
 }
+

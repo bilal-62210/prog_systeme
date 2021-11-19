@@ -1,0 +1,16 @@
+[
+  {
+    "NBSave": 0,
+    "Nom": "save1",
+    "Sources": "e:/",
+    "Cible": "d:/",
+    "Types": "complet"
+  },
+  {
+    "NBSave": 0,
+    "Nom": "save2",
+    "Sources": "c:/",
+    "Cible": "d:/",
+    "Types": "partiel"
+  }
+]
