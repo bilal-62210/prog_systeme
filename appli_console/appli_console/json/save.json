@@ -1,16 +1,8 @@
 [
   {
-    "NBSave": 0,
     "Nom": "save1",
-    "Sources": "e:/",
-    "Cible": "d:/",
+    "Sources": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\debut",
+    "Cible": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\fin",
     "Types": "complet"
-  },
-  {
-    "NBSave": 0,
-    "Nom": "save2",
-    "Sources": "c:/",
-    "Cible": "d:/",
-    "Types": "partiel"
   }
 ]

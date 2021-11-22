@@ -40,8 +40,13 @@ namespace appli_console
                     case "r":
                         read();
                         break;
+                    case "s":
+                        Save();
+                        break;
                     case "q":
                         etat = false;
+                        break;
+                    case "p":
                         break;
                 }
             }

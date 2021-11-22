@@ -14,6 +14,7 @@ namespace appli_console
             Console.WriteLine("\tm - Modify");
             Console.WriteLine("\td - Delete");
             Console.WriteLine("\tr - Read");
+            Console.WriteLine("\ts - Execute save");
             Console.WriteLine("\tq - Quit");
             Console.Write("Your option : ");
         }

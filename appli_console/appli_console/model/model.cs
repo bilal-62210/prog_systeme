@@ -6,6 +6,8 @@ using System.IO;
 using System.Text.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Linq;
+using System.Timers;
 
 
 namespace appli_console
@@ -20,11 +22,7 @@ namespace appli_console
         private int Temps;
         private static int Nb;
         public int NBSave { get; set; }
-        public string Nom { get; set; }
-        public string Sources { get; set; }
-        public string Cible { get; set; }
-        public string Types { get; set; }
-
+        public static System.Timers.Timer atimer { get; set; }
         protected void read()
         {
             //String line;
@@ -61,21 +59,21 @@ namespace appli_console
             Source = SourceSave;
             Target = TargetSave;
             Type = TypeSave;
+            string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\save.json";
+            string JsonPath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\nbsave.json";
 
-            string JsonPath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\nbsave.json";
-            AskForJsonFileName(JsonPath);
+             AskForJsonFileName(JsonPath);
 
             var nbr = new model();
             nbr.ReadJsonFile(JsonPath);
             if (Nb < 6)
             {
-                string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\save.json";
                 AskForJsonFileName(jsonpath);
                 var jsondata = File.ReadAllText(jsonpath);
-                var list = JsonConvert.DeserializeObject<List<model>>(jsondata);
+                var list = JsonConvert.DeserializeObject<List<data>>(jsondata);
                 if (list == null)
                 {
-                    model save = new model();
+                    data save = new data();
                     {
                         save.Nom = NameSave;
                         save.Sources = SourceSave;
@@ -87,7 +85,7 @@ namespace appli_console
                 }
                 else
                 {
-                    model save = new model();
+                     data save = new data();
                     {
                         save.Nom = NameSave;
                         save.Sources = SourceSave;
@@ -113,51 +111,74 @@ namespace appli_console
         {
 
         }
-        private void Save(string NameSave)
+        protected void Save()
         {
-            //string fileName = "test.txt";
-            //string sourcePath = @"C:\Users\Public\TestFolder";
-            //string targetPath = @"C:\Users\Public\TestFolder\SubDir";
-            Nom = NameSave;
-            // Use Path class to manipulate file and directory paths.
-            string destFile = System.IO.Path.Combine(Cible, NameSave);
+            string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\save.json";
 
-            // To copy a folder's contents to a new location:
-            // Create a new target folder.
-            // If the directory already exists, this method does not create a new directory.
-            System.IO.Directory.CreateDirectory(Cible);
+        var jsonText = File.ReadAllText(jsonpath);
+                var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
 
-            // To copy a file to another location and
-            // overwrite the destination file if it already exists.
-            System.IO.File.Copy(Sources, destFile, true);
+                Console.Write("Name of the save : ");
+                var ChoixNom = Console.ReadLine();
 
-            // To copy all the files in one directory to another directory.
-            // Get the files in the source folder. (To recursively iterate through
-            // all subfolders under the current directory, see
-            // "How to: Iterate Through a Directory Tree.")
-            // Note: Check for target path was performed previously
-            //       in this code example.
-            if (System.IO.Directory.Exists(Sources))
-            {
-                string[] files = System.IO.Directory.GetFiles(Sources);
-
-                // Copy the files and overwrite destination files if they already exist.
-                foreach (string s in files)
+                foreach (var data in Data.Where(x => x.Nom == ChoixNom))
                 {
-                    // Use static Path methods to extract only the file name from the path.
-                    NameSave = System.IO.Path.GetFileName(s);
-                    destFile = System.IO.Path.Combine(Cible, NameSave);
-                    System.IO.File.Copy(s, destFile, true);
+                    Source = data.Sources;
+                    Target = data.Cible;
+                    Type = data.Types;
                 }
-            }
-            else
-            {
-                Console.WriteLine("Source path does not exist!");
-            }
+
+                if (System.IO.Directory.Exists(Target))
+                {
+                    if (System.IO.Directory.Exists(Source))
+                    {
+                        if (Type == "complet" | Type == "Complet")
+                        {
+                            string[] files = System.IO.Directory.GetFiles(Source);
+
+                            // Copy the files and overwrite destination files if they already exist.
+                            foreach (string s in files)
+                            {
+                                // Use static Path methods to extract only the file name from the path.
+                                var fileName = System.IO.Path.GetFileName(s);
+                                var destFile = System.IO.Path.Combine(Target, fileName);
+                                System.IO.File.Copy(s, destFile, true);
+                            }
+                        }
+                        else
+                        {
+                            string[] files = System.IO.Directory.GetFiles(Source);
+                            string[] Files = System.IO.Directory.GetFiles(Target);
+
+                            foreach (string s in files)
+                            {
+                                foreach (string S in Files)
+                                {
+                                    if (s.Length != S.Length)
+                                    {
+                                        var fileName = System.IO.Path.GetFileName(s);
+                                        var destFile = System.IO.Path.Combine(Target, fileName);
+                                        System.IO.File.Copy(s, destFile, true);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Source path does not exist!");
+                    }
+                }
+                else
+                {
+                    System.IO.Directory.CreateDirectory(Target);
+                }  
         }
-        private void SequentialSave(string NameSave, Boolean ChoixSequentail, int TempsSequential)
+        private void SequentialSave(int TempsSequential)
         {
 
+            DateTime time = new DateTime();
+            
         }
         private static string AskForJsonFileName(string JsonPath)
         {
@@ -183,7 +204,16 @@ namespace appli_console
                 string json = JsonConvert.SerializeObject(data);
                 File.WriteAllText(jsonFileIn, json);
             }
- 
+        
     }
+  public  class data
+    {
+        public string Nom { get; set; }
+        public string Sources { get; set; }
+        public string Cible { get; set; }
+        public string Types { get; set; }
+    }
+   
+    
 
 }
