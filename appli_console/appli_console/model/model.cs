@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Linq;
 using System.Timers;
+using System.Diagnostics;
 
 
 namespace appli_console
@@ -22,7 +23,7 @@ namespace appli_console
         public int NBSave { get; set; }
         string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\save.json";
         string JsonPath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\nbsave.json";
-
+        string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\logs\\log_journalier.json";
         protected void read()
         {
             //String line;
@@ -184,9 +185,9 @@ namespace appli_console
         {
                 var jsonText = File.ReadAllText(jsonpath);
                 var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
-                        
                 foreach (var data in Data.Where(x => x.Nom == ChoixNom))
                 {
+                     Name = data.Nom;
                     Source = data.Sources;
                     Target = data.Cible;
                     Type = data.Types;
@@ -199,22 +200,28 @@ namespace appli_console
                         if (Type == "complet" | Type == "Complet")
                         {
                             string[] files = System.IO.Directory.GetFiles(Source);
-
-                            // Copy the files and overwrite destination files if they already exist.
-                            foreach (string s in files)
+                             int Size = 0;
+                             var sw = Stopwatch.StartNew();
+                        // Copy the files and overwrite destination files if they already exist.
+                        foreach (string s in files)
                             {
                                 // Use static Path methods to extract only the file name from the path.
                                 var fileName = System.IO.Path.GetFileName(s);
                                 var destFile = System.IO.Path.Combine(Target, fileName);
                                 System.IO.File.Copy(s, destFile, true);
+                                Size += s.Length;
                             }
+                        sw.Stop();
+                        TimeSpan timer = sw.Elapsed;
+                        Journalier(Name, Source, Target, Size, timer);
                         }
                         else
                         {
                             string[] files = System.IO.Directory.GetFiles(Source);
                             string[] Files = System.IO.Directory.GetFiles(Target);
-
-                            foreach (string s in files)
+                            int Size = 0;
+                            var sw = Stopwatch.StartNew();
+                        foreach (string s in files)
                             {
                                 foreach (string S in Files)
                                 {
@@ -223,10 +230,14 @@ namespace appli_console
                                         var fileName = System.IO.Path.GetFileName(s);
                                         var destFile = System.IO.Path.Combine(Target, fileName);
                                         System.IO.File.Copy(s, destFile, true);
+                                        Size += s.Length - S.Length;
                                     }
                                 }
                             }
-                        }
+                        sw.Stop();
+                        TimeSpan timer = sw.Elapsed;
+                        Journalier(Name, Source, Target, Size, timer);
+                    }
                     }
                     else
                     {
@@ -283,12 +294,61 @@ namespace appli_console
             string json = JsonConvert.SerializeObject(data);
             File.WriteAllText(jsonFilIn, json);
         }
+        protected void Journalier(string NameSave, string SourceSave, string TargetSave, int SizeSave, TimeSpan TransfertSave)
+        {
+            var nbr = new model();
+            AskForJsonFileName(pathjournalier);
+
+            var jsondata = File.ReadAllText(pathjournalier);
+            var list = JsonConvert.DeserializeObject<List<log_journalier>>(jsondata);
+
+            if (list == null)
+            {
+                log_journalier Save = new log_journalier
+                {
+                    Nom = NameSave,
+                    Sources = SourceSave,
+                    Cible = TargetSave,
+                    size = SizeSave.ToString(),
+                    filetransfertime = TransfertSave.ToString(),
+                    time = DateTime.Now
+                };
+                jsondata = "[" + JsonConvert.SerializeObject(Save, Formatting.Indented) + "]";
+                File.WriteAllText(pathjournalier, jsondata);
+            }
+            else
+            {
+                log_journalier save = new log_journalier
+                {
+                    Nom = NameSave,
+                    Sources = SourceSave,
+                    Cible = TargetSave,
+                    size = SizeSave.ToString(),
+                    filetransfertime = TransfertSave.ToString(),
+                    time = DateTime.Now
+                };
+
+                list.Add(save);
+                jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
+                File.WriteAllText(pathjournalier, jsondata);
+            }
+        }
         class data
         {
             public string Nom { get; set; }
             public string Sources { get; set; }
             public string Cible { get; set; }
             public string Types { get; set; }
+        }
+        class log_journalier
+        {
+            public string Nom { get; set; }
+            public string Sources { get; set; }
+            public string Cible { get; set; }
+            public string size { get; set; }
+            public string filetransfertime { get; set; }
+            public DateTime time { get; set; }
+
         }
     }
    
