@@ -15,10 +15,11 @@ namespace appli_console
             Console.WriteLine("\td - Delete");
             Console.WriteLine("\tr - Read");
             Console.WriteLine("\ts - Execute save");
+            Console.WriteLine("\tp - Sequential save");
             Console.WriteLine("\tq - Quit");
             Console.Write("Your option : ");
         }
-       public void fin()
+        public void fin()
         {
             Console.Write("\n Press any key to close the Calculator console app...");
             Console.ReadKey();

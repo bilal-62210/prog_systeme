@@ -12,17 +12,17 @@ using System.Timers;
 
 namespace appli_console
 {
-    class model
+  class model
     {
         private string Name;
         private string Source;
         private string Target;
         private string Type;
-        private Boolean Choix;
-        private int Temps;
         private static int Nb;
         public int NBSave { get; set; }
-        public static System.Timers.Timer atimer { get; set; }
+        string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\save.json";
+        string JsonPath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\nbsave.json";
+
         protected void read()
         {
             //String line;
@@ -59,9 +59,7 @@ namespace appli_console
             Source = SourceSave;
             Target = TargetSave;
             Type = TypeSave;
-            string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\save.json";
-            string JsonPath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\nbsave.json";
-
+            
              AskForJsonFileName(JsonPath);
 
             var nbr = new model();
@@ -103,24 +101,90 @@ namespace appli_console
                 Console.WriteLine("You can't create a new Save");
             }
         }
-        private void Modify(string NameSave, string SourceSave, string TargetSave, string TypeSave)
+        protected void Modify()
         {
+            string json = File.ReadAllText(jsonpath);
+            var Data = JsonConvert.DeserializeObject<List<data>>(json);
 
+            Console.Write("Value to change : ");
+            var search = Console.ReadLine();
+
+            foreach (var data in Data.Where(x => x.Nom == search))
+            {
+                Console.Write("What do you want to change ? : ");
+                var choix = Console.ReadLine();
+
+                if (choix == "name" | choix == "Name")
+                {
+                    Console.Write("Value : ");
+                    var modif = Console.ReadLine();
+
+                    data.Nom = modif;
+
+                    string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
+                    File.WriteAllText(jsonpath, output);
+                }
+                else if (choix == "source" | choix == "Source")
+                {
+                    Console.Write("Value : ");
+                    var modif = Console.ReadLine();
+
+                    data.Sources = modif;
+
+                    string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
+                    File.WriteAllText(jsonpath, output);
+                }
+                else if (choix == "target" | choix == "Target")
+                {
+                    Console.Write("Value : ");
+                    var modif = Console.ReadLine();
+
+                    data.Cible = modif;
+
+                    string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
+                    File.WriteAllText(jsonpath, output);
+                }
+                else if (choix == "type" | choix == "Type")
+                {
+                    Console.Write("Value : ");
+                    var modif = Console.ReadLine();
+
+                    data.Types = modif;
+
+                    string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
+                    File.WriteAllText(jsonpath, output);
+                }
+            }
         }
-        private void Delete(string NameSave)
+        protected void Delete()
         {
+            var nbr = new model();
 
+            AskForJsonFileName(JsonPath);
+            AskForJsonFileName(jsonpath);
+            nbr.deletenbsave(JsonPath);
+
+            var jsonText = File.ReadAllText(jsonpath);
+            var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
+
+            Console.Write("Name of the save : ");
+            var nameSave = Console.ReadLine();
+
+            foreach (var data in Data.Where(x => x.Nom == nameSave))
+            {
+                data.Sources = null;
+                data.Cible = null;
+                data.Types = null;
+                data.Nom = null;
+            }
+            jsonText = JsonConvert.SerializeObject(Data, Formatting.Indented);
+            File.WriteAllText(jsonpath, jsonText);
         }
-        protected void Save()
+        protected void Save(string ChoixNom)
         {
-            string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\save.json";
-
-        var jsonText = File.ReadAllText(jsonpath);
+                var jsonText = File.ReadAllText(jsonpath);
                 var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
-
-                Console.Write("Name of the save : ");
-                var ChoixNom = Console.ReadLine();
-
+                        
                 foreach (var data in Data.Where(x => x.Nom == ChoixNom))
                 {
                     Source = data.Sources;
@@ -174,13 +238,17 @@ namespace appli_console
                     System.IO.Directory.CreateDirectory(Target);
                 }  
         }
-        private void SequentialSave(int TempsSequential)
+        protected void SequentialSave()
         {
+            var jsonText = File.ReadAllText(jsonpath);
+            var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
 
-            DateTime time = new DateTime();
-            
+            foreach(var data in Data)
+            {
+                Save(data.Nom);
+            } 
         }
-        private static string AskForJsonFileName(string JsonPath)
+        protected static string AskForJsonFileName(string JsonPath)
         {
         BEGIN:
             if (File.Exists(JsonPath))
@@ -193,7 +261,7 @@ namespace appli_console
                 goto BEGIN;
             }
         }
-        private void ReadJsonFile(string jsonFileIn)
+        protected void ReadJsonFile(string jsonFileIn)
             {
                 dynamic jsonFile = JsonConvert.DeserializeObject(File.ReadAllText(jsonFileIn));
 
@@ -204,14 +272,24 @@ namespace appli_console
                 string json = JsonConvert.SerializeObject(data);
                 File.WriteAllText(jsonFileIn, json);
             }
-        
-    }
-  public  class data
-    {
-        public string Nom { get; set; }
-        public string Sources { get; set; }
-        public string Cible { get; set; }
-        public string Types { get; set; }
+        protected void deletenbsave(string jsonFilIn)
+        {
+            dynamic jsonFile = JsonConvert.DeserializeObject(File.ReadAllText(jsonFilIn));
+
+            Nb = jsonFile["NBSave"];
+            Nb--;
+            model data = new model();
+            data.NBSave = Nb;
+            string json = JsonConvert.SerializeObject(data);
+            File.WriteAllText(jsonFilIn, json);
+        }
+        class data
+        {
+            public string Nom { get; set; }
+            public string Sources { get; set; }
+            public string Cible { get; set; }
+            public string Types { get; set; }
+        }
     }
    
     
