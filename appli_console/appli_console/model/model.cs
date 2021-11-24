@@ -128,17 +128,17 @@ namespace appli_console
             var json2 = File.ReadAllText(pathAvancement);
             var Data2 = JsonConvert.DeserializeObject<List<log_avancement>>(json2);
 
-            Console.Write("Name of the save : ");
+            Console.Write("Name of the save : /Nom de la sauvegarde:");
             var search = Console.ReadLine();
 
             foreach (var data in Data.Where(x => x.Nom == search))
             {
-                Console.Write("What do you want to change ? : ");
+                Console.Write("What do you want to change ? : / que voulez vous changer?");
                 var choix = Console.ReadLine();
 
                 if (choix == "name" | choix == "Name" | choix == "nom" | choix == "Nom")
                 {
-                    Console.Write("Value : ");
+                    Console.Write("Value : /valeur:");
                     var modif = Console.ReadLine();
 
                     data.Nom = modif;
@@ -154,7 +154,7 @@ namespace appli_console
                 }
                 else if (choix == "source" | choix == "Source")
                 {
-                    Console.Write("Value : ");
+                    Console.Write("Value : / valeur:");
                     var modif = Console.ReadLine();
 
                     data.Sources = modif;
@@ -170,7 +170,7 @@ namespace appli_console
                 }
                 else if (choix == "target" | choix == "Target")
                 {
-                    Console.Write("Value : ");
+                    Console.Write("Value : / valeur:");
                     var modif = Console.ReadLine();
 
                     data.Cible = modif;
@@ -186,7 +186,7 @@ namespace appli_console
                 }
                 else if (choix == "type" | choix == "Type")
                 {
-                    Console.Write("Value : ");
+                    Console.Write("Value : / valeur:");
                     var modif = Console.ReadLine();
 
                     data.Types = modif;
@@ -217,7 +217,7 @@ namespace appli_console
             var jsonText2 = File.ReadAllText(pathAvancement);
             var Data2 = JsonConvert.DeserializeObject<List<log_avancement>>(jsonText2);
 
-            Console.Write("Name of the save : ");
+            Console.Write("Name of the save : / Nom de la sauvegarde:");
             var nameSave = Console.ReadLine();
 
             foreach (var data in Data.Where(x => x.Nom == nameSave))
@@ -373,7 +373,7 @@ namespace appli_console
                 }
                 else
                 {
-                    Console.WriteLine("Source path does not exist!");
+                    Console.WriteLine("Source path does not exist!/ La source n'existe pas!");
                 }
             }
             else
