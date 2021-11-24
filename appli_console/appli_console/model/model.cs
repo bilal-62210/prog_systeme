@@ -495,6 +495,7 @@ namespace appli_console
                 System.Threading.Thread.Sleep(100);
             }
         }
+      
         class data
         {
             public string Nom { get; set; }
