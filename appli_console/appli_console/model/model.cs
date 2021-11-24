@@ -115,7 +115,7 @@ namespace appli_console
             }
             else
             {
-                Console.WriteLine("You can't create a new Save");
+                Console.WriteLine("You can't create a new Save/ vous ne pouvez pas creer de nouvelle sauvegarde");
             }
         }
         //methode permettant de modifier les travaux
