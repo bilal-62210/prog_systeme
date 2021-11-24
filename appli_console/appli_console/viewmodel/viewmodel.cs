@@ -14,7 +14,7 @@ namespace appli_console
             while (etat == true)
             {
                 view.debut();
-                // Use a switch statement to do the math.
+               
                 switch (Console.ReadLine())
                 {
                     case "a":

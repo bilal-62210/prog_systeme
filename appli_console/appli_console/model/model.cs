@@ -25,6 +25,7 @@ namespace appli_console
         string JsonPath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\nbsave.json";
         string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\logs\\log_journalier.json";
         string pathAvancement = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\logs\\log_avancement.json";
+       //methode permettant de lire les json
         protected void read()
         {
             //String line;
@@ -32,15 +33,11 @@ namespace appli_console
             {
                 //Pass the file path and file name to the StreamReader constructor
                 StreamReader sr = new StreamReader("C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\save.json");
-                //Read the first line of text
                 string jsonString = sr.ReadToEnd();
-                //Continue to read until you reach end of file
                 if (jsonString != null)
                  {
                     model[] m = JsonConvert.DeserializeObject<model[]>(jsonString);
-                    //write the line to console window
                     Console.WriteLine(jsonString);
-                     //Read the next line
                  }
                  //close the file
                  sr.Close();
@@ -55,6 +52,7 @@ namespace appli_console
                 Console.WriteLine("reading finally succeed.");
             }
         }
+        //methode permettant de créer les travaux
         protected void Create(string NameSave, string SourceSave, string TargetSave, string TypeSave)
         {
             Name = NameSave;
@@ -120,6 +118,7 @@ namespace appli_console
                 Console.WriteLine("You can't create a new Save");
             }
         }
+        //methode permettant de modifier les travaux
         protected void Modify()
         {
             AskForJsonFileName(JsonPath);
@@ -203,6 +202,7 @@ namespace appli_console
                 }
             }
         }
+        //methode permettant de supprimer les travaux
         protected void Delete() 
         {
             var nbr = new model();
@@ -237,6 +237,7 @@ namespace appli_console
             jsonText2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
             File.WriteAllText(pathAvancement, jsonText2);
         }
+        //methode permettant d'executer les travaux
         protected void Save(string ChoixNom)    
         {
             var jsonText = File.ReadAllText(jsonpath);
@@ -265,7 +266,6 @@ namespace appli_console
 
                         foreach (string F in Files)
                         {
-                            // Use static Path methods to extract only the file name from the path.
                             var fileName = System.IO.Path.GetFileName(F);
                             var destFile = System.IO.Path.Combine(Target, fileName);
                             System.IO.File.Copy(F, destFile, true);
@@ -276,17 +276,15 @@ namespace appli_console
                         var sw = Stopwatch.StartNew();
                         int TotalFiles = Directory.GetFiles(Source, "*.*", SearchOption.TopDirectoryOnly).Length;
                         int FileToDo = TotalFiles;
-                        // Copy the files and overwrite destination files if they already exist.
                         foreach (string s in files)
                         {
                             for (int i = 0; i < TotalFiles; i++)
                             {
                                 FileToDo--;
-                                // Use static Path methods to extract only the file name from the path.
+                             
                                 var fileName = System.IO.Path.GetFileName(s);
                                 var destFile = System.IO.Path.Combine(Target, fileName);
                                 System.IO.File.Copy(s, destFile, true);
-                                //Progression = (((TotalFiles - FileToDo) / TotalFiles) * 100);
                                 if (FileToDo == 0)
                                 {
                                     Source = "";
@@ -383,6 +381,7 @@ namespace appli_console
                 System.IO.Directory.CreateDirectory(Target);
             }
         }
+        //methode permettant d'executer séquentiellement les travaux
         protected void SequentialSave()
         {
             var jsonText = File.ReadAllText(jsonpath);

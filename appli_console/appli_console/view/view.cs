@@ -8,7 +8,6 @@ namespace appli_console
     {
         public void debut()
         {
-            // Ask the user to choose an option.
             Console.WriteLine("Choose an option from the following list:");
             Console.WriteLine("\ta - Add");
             Console.WriteLine("\tm - Modify");
