@@ -1,14 +1,6 @@
-[
-  {
-    "Nom": "save1",
-    "Sources": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\debut",
-    "Cible": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\fin",
-    "Types": "complet"
-  },
-  {
-    "Nom": "save2",
-    "Sources": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\Bureau\\testappli",
-    "Cible": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\fin",
-    "Types": "complet"
-  }
-]
+[{
+  "Nom": "save1",
+  "Sources": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\debut",
+  "Cible": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\fin",
+  "Types": "complet"
+}]

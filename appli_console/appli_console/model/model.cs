@@ -24,6 +24,7 @@ namespace appli_console
         string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\save.json";
         string JsonPath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\nbsave.json";
         string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\logs\\log_journalier.json";
+        string pathAvancement = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\logs\\log_avancement.json";
         protected void read()
         {
             //String line;
@@ -70,30 +71,47 @@ namespace appli_console
                 AskForJsonFileName(jsonpath);
                 var jsondata = File.ReadAllText(jsonpath);
                 var list = JsonConvert.DeserializeObject<List<data>>(jsondata);
+                AskForJsonFileName(pathAvancement);
+
+                var jsondata2 = File.ReadAllText(pathAvancement);
+                var list2 = JsonConvert.DeserializeObject<List<log_avancement>>(jsondata);
+
+                data Save = new data
+                {
+                    Nom = NameSave,
+                    Sources = SourceSave,
+                    Cible = TargetSave,
+                    Types = TypeSave
+                };
+
+                log_avancement avance = new log_avancement
+                {
+                    Name = NameSave,
+                    Source = "",
+                    Target = "",
+                    State = "END",
+                    progression = "0",
+                    TotalFilesToCopy = "0",
+                    TotalFilesSize = "0",
+                    NbFilesLeftToDo = "0"
+                };
+
                 if (list == null)
                 {
-                    data save = new data();
-                    {
-                        save.Nom = NameSave;
-                        save.Sources = SourceSave;
-                        save.Cible = TargetSave;
-                        save.Types = TypeSave;
-                    };
-                    jsondata = "[" + JsonConvert.SerializeObject(save, Formatting.Indented) + "]";
+                    jsondata = "[" + JsonConvert.SerializeObject(Save, Formatting.Indented) + "]";
                     File.AppendAllText(jsonpath, jsondata);
+                    jsondata2 = "[" + JsonConvert.SerializeObject(avance, Formatting.Indented) + "]";
+                    File.WriteAllText(pathAvancement, jsondata2);
                 }
                 else
                 {
-                     data save = new data();
-                    {
-                        save.Nom = NameSave;
-                        save.Sources = SourceSave;
-                        save.Cible = TargetSave;
-                        save.Types = TypeSave;
-                    };
-                    list.Add(save);
+                    
+                    list.Add(Save);
                     jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
                     File.WriteAllText(jsonpath, jsondata);
+                    list2.Add(avance);
+                    jsondata2 = JsonConvert.SerializeObject(list2, Formatting.Indented);
+                    File.WriteAllText(pathAvancement, jsondata2);
                 }
 
             }
@@ -104,10 +122,14 @@ namespace appli_console
         }
         protected void Modify()
         {
+            AskForJsonFileName(JsonPath);
             string json = File.ReadAllText(jsonpath);
             var Data = JsonConvert.DeserializeObject<List<data>>(json);
+            AskForJsonFileName(pathAvancement);
+            var json2 = File.ReadAllText(pathAvancement);
+            var Data2 = JsonConvert.DeserializeObject<List<log_avancement>>(json2);
 
-            Console.Write("Value to change : ");
+            Console.Write("Name of the save : ");
             var search = Console.ReadLine();
 
             foreach (var data in Data.Where(x => x.Nom == search))
@@ -115,7 +137,7 @@ namespace appli_console
                 Console.Write("What do you want to change ? : ");
                 var choix = Console.ReadLine();
 
-                if (choix == "name" | choix == "Name")
+                if (choix == "name" | choix == "Name" | choix == "nom" | choix == "Nom")
                 {
                     Console.Write("Value : ");
                     var modif = Console.ReadLine();
@@ -124,6 +146,12 @@ namespace appli_console
 
                     string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
                     File.WriteAllText(jsonpath, output);
+                    foreach (var avancement in Data2.Where(x => x.Name == search))
+                    {
+                        avancement.Name = modif;
+                        json2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
+                        File.WriteAllText(pathAvancement, json2);
+                    }
                 }
                 else if (choix == "source" | choix == "Source")
                 {
@@ -134,6 +162,12 @@ namespace appli_console
 
                     string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
                     File.WriteAllText(jsonpath, output);
+                    foreach (var avancement in Data2.Where(x => x.Name == search))
+                    {
+                        avancement.Name = modif;
+                        json2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
+                        File.WriteAllText(pathAvancement, json2);
+                    }
                 }
                 else if (choix == "target" | choix == "Target")
                 {
@@ -144,6 +178,12 @@ namespace appli_console
 
                     string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
                     File.WriteAllText(jsonpath, output);
+                    foreach (var avancement in Data2.Where(x => x.Name == search))
+                    {
+                        avancement.Name = modif;
+                        json2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
+                        File.WriteAllText(pathAvancement, json2);
+                    }
                 }
                 else if (choix == "type" | choix == "Type")
                 {
@@ -154,10 +194,16 @@ namespace appli_console
 
                     string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
                     File.WriteAllText(jsonpath, output);
+                    foreach (var avancement in Data2.Where(x => x.Name == search))
+                    {
+                        avancement.Name = modif;
+                        json2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
+                        File.WriteAllText(pathAvancement, json2);
+                    }
                 }
             }
         }
-        protected void Delete()
+        protected void Delete() 
         {
             var nbr = new model();
 
@@ -167,6 +213,9 @@ namespace appli_console
 
             var jsonText = File.ReadAllText(jsonpath);
             var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
+
+            var jsonText2 = File.ReadAllText(pathAvancement);
+            var Data2 = JsonConvert.DeserializeObject<List<log_avancement>>(jsonText2);
 
             Console.Write("Name of the save : ");
             var nameSave = Console.ReadLine();
@@ -180,74 +229,159 @@ namespace appli_console
             }
             jsonText = JsonConvert.SerializeObject(Data, Formatting.Indented);
             File.WriteAllText(jsonpath, jsonText);
-        }
-        protected void Save(string ChoixNom)
-        {
-                var jsonText = File.ReadAllText(jsonpath);
-                var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
-                foreach (var data in Data.Where(x => x.Nom == ChoixNom))
-                {
-                     Name = data.Nom;
-                    Source = data.Sources;
-                    Target = data.Cible;
-                    Type = data.Types;
-                }
 
-                if (System.IO.Directory.Exists(Target))
+            foreach (var data2 in Data2.Where(x => x.Name == nameSave))
+            {
+                data2.Name = null;
+            }
+            jsonText2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
+            File.WriteAllText(pathAvancement, jsonText2);
+        }
+        protected void Save(string ChoixNom)    
+        {
+            var jsonText = File.ReadAllText(jsonpath);
+            var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
+
+            foreach (var data in Data.Where(x => x.Nom == ChoixNom))
+            {
+                Name = data.Nom;
+                Source = data.Sources;
+                Target = data.Cible;
+                Type = data.Types;
+            }
+            if (System.IO.Directory.Exists(Target))
+            {
+                if (System.IO.Directory.Exists(Source))
                 {
-                    if (System.IO.Directory.Exists(Source))
+                    if (Type == "complet" | Type == "Complet")
                     {
-                        if (Type == "complet" | Type == "Complet")
+                        var source = Source;
+                        var target = Target;
+                        string[] files = System.IO.Directory.GetFiles(Source);
+                        string[] Files = System.IO.Directory.GetFiles(Source);
+
+                        int TotalSize = 0;
+                        string state = "Active";
+
+                        foreach (string F in Files)
                         {
-                            string[] files = System.IO.Directory.GetFiles(Source);
-                             int Size = 0;
-                             var sw = Stopwatch.StartNew();
+                            // Use static Path methods to extract only the file name from the path.
+                            var fileName = System.IO.Path.GetFileName(F);
+                            var destFile = System.IO.Path.Combine(Target, fileName);
+                            System.IO.File.Copy(F, destFile, true);
+                            TotalSize += F.Length;
+                        }
+                        int Size = TotalSize;
+                        float Progression = 0;
+                        var sw = Stopwatch.StartNew();
+                        int TotalFiles = Directory.GetFiles(Source, "*.*", SearchOption.TopDirectoryOnly).Length;
+                        int FileToDo = TotalFiles;
                         // Copy the files and overwrite destination files if they already exist.
                         foreach (string s in files)
+                        {
+                            for (int i = 0; i < TotalFiles; i++)
                             {
+                                FileToDo--;
                                 // Use static Path methods to extract only the file name from the path.
                                 var fileName = System.IO.Path.GetFileName(s);
                                 var destFile = System.IO.Path.Combine(Target, fileName);
                                 System.IO.File.Copy(s, destFile, true);
-                                Size += s.Length;
-                            }
-                        sw.Stop();
-                        TimeSpan timer = sw.Elapsed;
-                        Journalier(Name, Source, Target, Size, timer);
-                        }
-                        else
-                        {
-                            string[] files = System.IO.Directory.GetFiles(Source);
-                            string[] Files = System.IO.Directory.GetFiles(Target);
-                            int Size = 0;
-                            var sw = Stopwatch.StartNew();
-                        foreach (string s in files)
-                            {
-                                foreach (string S in Files)
+                                //Progression = (((TotalFiles - FileToDo) / TotalFiles) * 100);
+                                if (FileToDo == 0)
                                 {
-                                    if (s.Length != S.Length)
-                                    {
-                                        var fileName = System.IO.Path.GetFileName(s);
-                                        var destFile = System.IO.Path.Combine(Target, fileName);
-                                        System.IO.File.Copy(s, destFile, true);
-                                        Size += s.Length - S.Length;
-                                    }
+                                    Source = "";
+                                    Target = "";
+                                    state = "END";
+                                    TotalFiles = 0;
+                                    TotalSize = 0;
+                                    FileToDo = 0;
+                                    Progression = 0;
+                                    avancement(Name, Source, Target, state, TotalFiles, TotalSize, FileToDo, Progression);
                                 }
+                                avancement(Name, Source, Target, state, TotalFiles, TotalSize, FileToDo, Progression);
                             }
+                        }
                         sw.Stop();
-                        TimeSpan timer = sw.Elapsed;
-                        Journalier(Name, Source, Target, Size, timer);
-                    }
+                        TimeSpan Timer = sw.Elapsed;
+                        Journalier(Name, source, target, Size, Timer);
                     }
                     else
                     {
-                        Console.WriteLine("Source path does not exist!");
+                        var source = Source;
+                        var target = Target;
+
+                        string[] files = System.IO.Directory.GetFiles(Source);
+                        string[] Files = System.IO.Directory.GetFiles(Target);
+
+                        int TotalSize = 0;
+                        string state = "Active";
+
+                        int TotalFiles = 0;
+
+                        foreach (string f in files)
+                        {
+                            foreach (string F in Files)
+                            {
+                                // Use static Path methods to extract only the file name from the path.
+                                var fileName = System.IO.Path.GetFileName(f);
+                                var destFile = System.IO.Path.Combine(Target, fileName);
+                                System.IO.File.Copy(f, destFile, true);
+                                if (f.Length != F.Length)
+                                {
+                                    TotalSize += f.Length - F.Length;
+                                    TotalFiles += 1;
+                                }
+                            }
+                        }
+                        int Size = TotalSize;
+                        float Progression = 0;
+                        var sw = Stopwatch.StartNew();
+                        int FileToDo = TotalFiles;
+
+                        foreach (string s in files)
+                        {
+                            foreach (string S in Files)
+                            {
+                                if (s.Length != S.Length)
+                                {
+                                    for (int i = 0; i < TotalFiles; i++)
+                                    {
+                                        FileToDo--;
+                                        // Use static Path methods to extract only the file name from the path.
+                                        var fileName = System.IO.Path.GetFileName(s);
+                                        var destFile = System.IO.Path.Combine(Target, fileName);
+                                        System.IO.File.Copy(s, destFile, true);
+                                        //Progression = (((TotalFiles - FileToDo) / TotalFiles) * 100);
+                                        if (FileToDo == 0)
+                                        {
+                                            Source = "";
+                                            Target = "";
+                                            state = "END";
+                                            TotalFiles = 0;
+                                            TotalSize = 0;
+                                            FileToDo = 0;
+                                            Progression = 0;
+                                            avancement(Name, Source, Target, state, TotalFiles, TotalSize, FileToDo, Progression);
+                                        }
+                                        avancement(Name, Source, Target, state, TotalFiles, TotalSize, FileToDo, Progression);
+                                    }
+                                }
+                            }
+                        }
+                        sw.Stop();
+                        TimeSpan Timer = sw.Elapsed;
+                        Journalier(Name, source, target, Size, Timer);
                     }
                 }
                 else
                 {
-                    System.IO.Directory.CreateDirectory(Target);
-                }  
+                    Console.WriteLine("Source path does not exist!");
+                }
+            }
+            else
+            {
+                System.IO.Directory.CreateDirectory(Target);
+            }
         }
         protected void SequentialSave()
         {
@@ -333,6 +467,34 @@ namespace appli_console
                 File.WriteAllText(pathjournalier, jsondata);
             }
         }
+        protected void avancement(string NameSave, string SourceSave, string TargetSave, string State, int FileToCopy, int FileSize, int FileToDo, float Progression)
+        {
+            var nbr = new model();
+            AskForJsonFileName(pathAvancement);
+
+            var jsondata = File.ReadAllText(pathAvancement);
+            var list = JsonConvert.DeserializeObject<List<log_avancement>>(jsondata);
+
+            try
+            {
+                foreach (var data in list.Where(x => x.Name == NameSave))
+                {
+                    data.Source = SourceSave;
+                    data.Target = TargetSave;
+                    data.State = State;
+                    data.progression = Progression.ToString();
+                    data.TotalFilesToCopy = FileToCopy.ToString();
+                    data.TotalFilesSize = FileSize.ToString();
+                    data.NbFilesLeftToDo = FileToDo.ToString();
+                    jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
+                    File.WriteAllText(pathAvancement, jsondata);
+                }
+            }
+            catch
+            {
+                System.Threading.Thread.Sleep(100);
+            }
+        }
         class data
         {
             public string Nom { get; set; }
@@ -349,6 +511,18 @@ namespace appli_console
             public string filetransfertime { get; set; }
             public DateTime time { get; set; }
 
+        }
+
+        class log_avancement
+        {
+            public string Name { get; set; }
+            public string Source { get; set; }
+            public string Target { get; set; }
+            public string State { get; set; }
+            public string progression { get; set; }
+            public string TotalFilesToCopy { get; set; }
+            public string TotalFilesSize { get; set; }
+            public string NbFilesLeftToDo { get; set; }
         }
     }
    
