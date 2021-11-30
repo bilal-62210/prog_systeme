@@ -15,7 +15,15 @@
         <Label x:Name="cible" Content="Cible" HorizontalAlignment="Left" Margin="36,184,0,0" VerticalAlignment="Top"/>
         <Label x:Name="type_sauvegarde" Content="Type de sauvegarde" HorizontalAlignment="Left" Margin="33,268,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txt_sauvegarde" HorizontalAlignment="Left" Margin="179,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4D4D4"/>
-        <DataGrid x:Name="grid_data" Margin="357,23,48,113" SelectionChanged="grid_data_SelectionChanged"/>
+        <DataGrid x:Name="DataRead" Margin="320,29,31,99" AutoGenerateColumns="False" ItemsSource="{Binding Items}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=Nom}" Width="Auto"/>
+                <DataGridTextColumn Header="Source" Binding="{Binding Path=Sources}" Width="Auto"/>
+                <DataGridTextColumn Header="Target" Binding="{Binding Path=Cible}" Width="Auto"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Path=Types}" Width="Auto"/>
+                <DataGridTextColumn Header="chiffrement" Binding="{Binding Path=chiffrement}" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="btn_ajouter" Content="Ajouter" HorizontalAlignment="Left" Margin="33,380,0,0" VerticalAlignment="Top" Width="64" Click="btn_ajouter_Click"/>
         <Button x:Name="btn_modify" Content="Modifier" HorizontalAlignment="Left" Margin="130,380,0,0" VerticalAlignment="Top" Width="66" Click="btn_modify_Click"/>
         <Button x:Name="btn_supprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="239,380,0,0" VerticalAlignment="Top" Height="20" Width="72" Click="btn_supprimer_Click"/>

@@ -56,41 +56,27 @@ namespace appinterfacev2
         private string Target;
         private string Type;
         private string chiffres;
-        private static int Nb;
+        public static DataGrid set = new DataGrid();
         string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\save1.json";
         string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\journalier.json";
         string pathAvancement = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\avancement.json";
         //methode permettant de lire les json
-        public void read()
+        public void Read()
         {
-            //String line;
-            try
+            StreamReader r = new StreamReader(@"C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\save1.json");
+            string json = r.ReadToEnd();
+            List<data> table = JsonConvert.DeserializeObject<List<data>>(json);
+            List<Items> items = new List<Items>();
+            foreach (var data in table)
             {
-                //Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader("C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\save1.json");
-                string jsonString = sr.ReadToEnd();
-                if (jsonString != null)
-                {
-                    model[] m = JsonConvert.DeserializeObject<model[]>(jsonString);
-                    MessageBox.Show(jsonString);
-                    //grid_data.ItemsSource = m;
-                }
-                //close the file
-                sr.Close();
-                Console.ReadLine();
+                items.Add(new Items { Nom = data.Nom, Sources = data.Sources, Cible = data.Cible, Types = data.Types, chiffrement = data.chiffrement });
             }
-            catch (Exception e)
-            {
-                MessageBox.Show("Exception: " + e.Message);
-            }
-            finally
-            {
-                MessageBox.Show("reading finally succeed.");
-            }
+            set.ItemsSource = items;
         }
         //methode permettant de créer les travaux
         public void Create(string NameSave, string SourceSave, string TargetSave, string TypeSave, string chiffre)
         {
+            var result = false;
             Name = NameSave;
             Source = SourceSave;
             Target = TargetSave;
@@ -124,8 +110,14 @@ namespace appinterfacev2
                     TotalFilesSize = "0",
                     NbFilesLeftToDo = "0"
                 };
-
-                if (list == null)
+                foreach (var data in list)
+                {
+                    if (data.Nom == null)
+                    {
+                        result = true;
+                    }
+                }
+            if (list == null)
                 {
                     jsondata = "[" + JsonConvert.SerializeObject(Save, Formatting.Indented) + "]";
                     File.AppendAllText(jsonpath, jsondata);
@@ -133,7 +125,35 @@ namespace appinterfacev2
                     File.WriteAllText(pathAvancement, jsondata2);
                     MessageBox.Show("ajouter avec succès");
                 }
-                else
+            else if (result == true)
+            {
+                foreach (var data in list.Where(x => x.Nom == null))
+                {
+                    data.Nom = NameSave;
+                    data.Sources = SourceSave;
+                    data.Cible = TargetSave;
+                    data.Types = TypeSave;
+                    data.chiffrement = chiffre;
+                    jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
+                    File.WriteAllText(jsonpath, jsondata);
+                    if (data.Nom == NameSave)
+                    {
+                        break;
+                    }
+                }
+                foreach (var data in list2.Where(x => x.Name == null))
+                {
+                    data.Name = NameSave;
+                    jsondata2 = JsonConvert.SerializeObject(list2, Formatting.Indented);
+                    File.WriteAllText(pathAvancement, jsondata2);
+                    if (data.Name == NameSave)
+                    {
+                        break;
+                    }
+                }
+                MessageBox.Show("Save created");
+            }
+            else
                 {
 
                     list.Add(Save);
@@ -399,17 +419,6 @@ namespace appinterfacev2
                 goto BEGIN;
             }
         }
-        /*protected void deletenbsave(string jsonFilIn)
-        {
-            dynamic jsonFile = JsonConvert.DeserializeObject(File.ReadAllText(jsonFilIn));
-
-            Nb = jsonFile["NBSave"];
-            Nb--;
-            model data = new model();
-            data.NBSave = Nb;
-            string json = JsonConvert.SerializeObject(data);
-            File.WriteAllText(jsonFilIn, json);
-        }*/
         protected void Journalier(string NameSave, string SourceSave, string TargetSave, int SizeSave, TimeSpan TransfertSave)
         {
             var nbr = new model();
@@ -495,7 +504,7 @@ namespace appinterfacev2
             public DateTime time { get; set; }
 
         }
-
+        class Items : data { }
         class log_avancement
         {
             public string Name { get; set; }

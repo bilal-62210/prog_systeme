@@ -20,6 +20,7 @@ namespace appinterfacev2
         public acceuil_sauvegarde()
         {
             InitializeComponent();
+            model.set = DataRead;
         }
         public delegate String del_JSON(string path, string search);
 
@@ -35,7 +36,7 @@ namespace appinterfacev2
         private void btn_lire_Click(object sender, RoutedEventArgs e)
         {
             model lire = new model();
-            lire.read();
+            lire.Read();
         }
 
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
