@@ -5,7 +5,8 @@
       "Name": "Nom de la sauvegarde:",
       "Source": "Source de la sauvegarde:",
       "Target": "Cible de la sauvegarde:",
-      "type": "Type de sauvegarde:"
+      "Type": "Type de sauvegarde:",
+      "Chiffre":  "type de chiffrement:"
     },
     "Interface": {
       "take_choice": "Choisissez une option dans la liste suivante :",
@@ -25,7 +26,8 @@
       "Name": "Backup name:",
       "Source": "Backup source",
       "Target": "Backup target ",
-      "type": "Backup type"
+      "Type": "Backup type",
+      "Chiffre": "encryption type:"
     },
     "Interface": {
       "take_choice": "Choose an option from the following list :",

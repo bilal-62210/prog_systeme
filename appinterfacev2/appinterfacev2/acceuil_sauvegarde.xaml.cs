@@ -27,12 +27,28 @@ namespace appinterfacev2
         {
             string path = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\langue.json";
             string search = MainWindow.choix+".Save.Name";
+            string search1 = MainWindow.choix + ".Save.Source";
+            string search2 = MainWindow.choix + ".Save.Target";
+            string search3 = MainWindow.choix + ".Save.Type";
+            string search4 = MainWindow.choix + ".Save.Chiffre";
+            string search5 = MainWindow.choix + ".Interface.Add";
+            string search6 = MainWindow.choix + ".Interface.Modify";
+            string search7 = MainWindow.choix + ".Interface.Delete";
+            string search8 = MainWindow.choix + ".Interface.Read";
+            string search9 = MainWindow.choix + ".Interface.Execute";
+            string search10 = MainWindow.choix + ".Interface.Sequential";
+            string search11 = MainWindow.choix + ".Interface.";
             // to make one time at start of code to declare method and delegate
             var js = new model();
             del_JSON del_js = new del_JSON(js.ExeJS);
             // invoke del_js, output : string
-           // MessageBox.Show(del_js.Invoke(path, search));
             label_nom.Content = del_js.Invoke(path, search);
+            label_source.Content = del_js.Invoke(path, search1);
+            label_cible.Content = del_js.Invoke(path, search2);
+            label_type_sauvegarde.Content = del_js.Invoke(path, search3);
+            label_chiffre.Content= del_js.Invoke(path, search4);
+            btn_ajouter.Content= del_js.Invoke(path, search5);
+            btn_modify.Content= del_js.Invoke(path, search6);
         }
 
         public void grid_data_SelectionChanged(object sender, SelectionChangedEventArgs e)
