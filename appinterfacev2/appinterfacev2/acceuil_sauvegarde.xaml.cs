@@ -55,6 +55,31 @@ namespace appinterfacev2
             supprimer.Delete(text_box_nom.Text);
             text_box_nom.Text = "";
         }
+
+        private void btn_executer_Click(object sender, RoutedEventArgs e)
+        {
+            model executer = new model();
+            executer.Save(text_box_nom.Text);
+            text_box_nom.Text = "";
+        }
+
+        private void btn_sequentiel_Click(object sender, RoutedEventArgs e)
+        {
+            model sequentiel = new model();
+            sequentiel.SequentialSave();
+                 
+        }
+
+        private void btn_modify_Click(object sender, RoutedEventArgs e)
+        {
+            model modifier = new model();
+            modifier.Modify(text_box_nom.Text,txt_source.Text,txt_cible.Text,txt_sauvegarde.Text,txt_chiffre.Text);
+            text_box_nom.Text = "";
+            txt_source.Text = "";
+            txt_cible.Text = "";
+            txt_sauvegarde.Text = "";
+            txt_chiffre.Text = "";
+        }
         /* private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
 {
 MainWindow test = new MainWindow();

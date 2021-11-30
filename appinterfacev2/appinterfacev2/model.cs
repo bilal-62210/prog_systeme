@@ -57,11 +57,9 @@ namespace appinterfacev2
         private string Type;
         private string chiffres;
         private static int Nb;
-        public int NBSave { get; set; }
         string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\save1.json";
-        string JsonPath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\json\\nbsave.json";
-        string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\logs\\log_journalier.json";
-        string pathAvancement = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appli_console\\appli_console\\logs\\log_avancement.json";
+        string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\journalier.json";
+        string pathAvancement = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\avancement.json";
         //methode permettant de lire les json
         public void read()
         {
@@ -148,86 +146,53 @@ namespace appinterfacev2
             }
         }
         //methode permettant de modifier les travaux
-        protected void Modify()
+        public void Modify(string nom_save, string source, string cible, string type, string chiffre)
         {
-            AskForJsonFileName(JsonPath);
             string json = File.ReadAllText(jsonpath);
             var Data = JsonConvert.DeserializeObject<List<data>>(json);
             AskForJsonFileName(pathAvancement);
             var json2 = File.ReadAllText(pathAvancement);
             var Data2 = JsonConvert.DeserializeObject<List<log_avancement>>(json2);
 
-            Console.Write("Name of the save : /Nom de la sauvegarde:");
-            var search = Console.ReadLine();
+            var search = nom_save;
 
             foreach (var data in Data.Where(x => x.Nom == search))
             {
-                Console.Write("What do you want to change ? : / que voulez vous changer?");
-                var choix = Console.ReadLine();
-
-                if (choix == "name" | choix == "Name" | choix == "nom" | choix == "Nom")
+                if (source!="")
                 {
-                    Console.Write("Value : /valeur:");
-                    var modif = Console.ReadLine();
-
-                    data.Nom = modif;
-
-                    string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
-                    File.WriteAllText(jsonpath, output);
-                    foreach (var avancement in Data2.Where(x => x.Name == search))
-                    {
-                        avancement.Name = modif;
-                        json2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
-                        File.WriteAllText(pathAvancement, json2);
-                    }
-                }
-                else if (choix == "source" | choix == "Source")
-                {
-                    Console.Write("Value : / valeur:");
-                    var modif = Console.ReadLine();
+                    var modif = source;
 
                     data.Sources = modif;
 
                     string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
                     File.WriteAllText(jsonpath, output);
-                    foreach (var avancement in Data2.Where(x => x.Name == search))
-                    {
-                        avancement.Name = modif;
-                        json2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
-                        File.WriteAllText(pathAvancement, json2);
-                    }
                 }
-                else if (choix == "target" | choix == "Target")
+                if (cible!="")
                 {
-                    Console.Write("Value : / valeur:");
-                    var modif = Console.ReadLine();
+                    var modif = cible;
 
                     data.Cible = modif;
 
                     string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
                     File.WriteAllText(jsonpath, output);
-                    foreach (var avancement in Data2.Where(x => x.Name == search))
-                    {
-                        avancement.Name = modif;
-                        json2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
-                        File.WriteAllText(pathAvancement, json2);
-                    }
                 }
-                else if (choix == "type" | choix == "Type")
+                if (type!="")
                 {
-                    Console.Write("Value : / valeur:");
-                    var modif = Console.ReadLine();
+                    var modif = type;
 
                     data.Types = modif;
 
                     string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
                     File.WriteAllText(jsonpath, output);
-                    foreach (var avancement in Data2.Where(x => x.Name == search))
-                    {
-                        avancement.Name = modif;
-                        json2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
-                        File.WriteAllText(pathAvancement, json2);
-                    }
+                }
+                if (chiffre != "")
+                {
+                    var modif = chiffre;
+
+                    data.chiffrement = modif;
+
+                    string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
+                    File.WriteAllText(jsonpath, output);
                 }
             }
         }
@@ -264,7 +229,7 @@ namespace appinterfacev2
             MessageBox.Show("supprimer avec succes");
         }
         //methode permettant d'executer les travaux
-        protected void Save(string ChoixNom)
+        public void Save(string ChoixNom)
         {
             var jsonText = File.ReadAllText(jsonpath);
             var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
@@ -275,6 +240,7 @@ namespace appinterfacev2
                 Source = data.Sources;
                 Target = data.Cible;
                 Type = data.Types;
+                chiffres = data.chiffrement;
             }
             if (System.IO.Directory.Exists(Target))
             {
@@ -328,6 +294,7 @@ namespace appinterfacev2
                         sw.Stop();
                         TimeSpan Timer = sw.Elapsed;
                         Journalier(Name, source, target, Size, Timer);
+                        MessageBox.Show("executer avec succes");
                     }
                     else
                     {
@@ -361,6 +328,7 @@ namespace appinterfacev2
                         float Progression = 0;
                         var sw = Stopwatch.StartNew();
                         int FileToDo = TotalFiles;
+                        MessageBox.Show("executer avec succes");
 
                         foreach (string s in files)
                         {
@@ -399,7 +367,7 @@ namespace appinterfacev2
                 }
                 else
                 {
-                    Console.WriteLine("Source path does not exist!/ La source n'existe pas!");
+                    MessageBox.Show("Source path does not exist!/ La source n'existe pas!");
                 }
             }
             else
@@ -408,7 +376,7 @@ namespace appinterfacev2
             }
         }
         //methode permettant d'executer séquentiellement les travaux
-        protected void SequentialSave()
+        public void SequentialSave()
         {
             var jsonText = File.ReadAllText(jsonpath);
             var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
@@ -431,18 +399,7 @@ namespace appinterfacev2
                 goto BEGIN;
             }
         }
-        protected void ReadJsonFile(string jsonFileIn)
-        {
-            dynamic jsonFile = JsonConvert.DeserializeObject(File.ReadAllText(jsonFileIn));
-
-            Nb = jsonFile["NBSave"];
-            Nb++;
-            model data = new model();
-            data.NBSave = Nb;
-            string json = JsonConvert.SerializeObject(data);
-            File.WriteAllText(jsonFileIn, json);
-        }
-        protected void deletenbsave(string jsonFilIn)
+        /*protected void deletenbsave(string jsonFilIn)
         {
             dynamic jsonFile = JsonConvert.DeserializeObject(File.ReadAllText(jsonFilIn));
 
@@ -452,7 +409,7 @@ namespace appinterfacev2
             data.NBSave = Nb;
             string json = JsonConvert.SerializeObject(data);
             File.WriteAllText(jsonFilIn, json);
-        }
+        }*/
         protected void Journalier(string NameSave, string SourceSave, string TargetSave, int SizeSave, TimeSpan TransfertSave)
         {
             var nbr = new model();
@@ -520,7 +477,6 @@ namespace appinterfacev2
                 System.Threading.Thread.Sleep(100);
             }
         }
-
         class data
         {
             public string Nom { get; set; }
