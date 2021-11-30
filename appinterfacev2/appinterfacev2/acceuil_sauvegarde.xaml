@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="acceuil_sauvegarde" Height="480" Width="820">
     <Grid>
-        <Label x:Name="label_nom" HorizontalAlignment="Left" Margin="36,46,0,0" VerticalAlignment="Top" Width="43" Content="Nom"/>
+        <Label x:Name="label_nom" HorizontalAlignment="Left" Margin="36,46,0,0" VerticalAlignment="Top" Width="127" Content=""/>
         <TextBox x:Name="text_box_nom" HorizontalAlignment="Left" Margin="179,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" Background="#FFD4D4D4"/>
-        <Label x:Name="source" Content="Source" HorizontalAlignment="Left" Margin="33,121,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="source" Content="Source" HorizontalAlignment="Left" Margin="33,121,0,0" VerticalAlignment="Top" Width="130"/>
         <TextBox x:Name="txt_source" HorizontalAlignment="Left" Margin="179,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="Black" Background="#FFD4D4D4"/>
         <TextBox x:Name="txt_cible" HorizontalAlignment="Left" Margin="179,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4D4D4"/>
-        <Label x:Name="cible" Content="Cible" HorizontalAlignment="Left" Margin="36,184,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="type_sauvegarde" Content="Type de sauvegarde" HorizontalAlignment="Left" Margin="33,268,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="cible" Content="Cible" HorizontalAlignment="Left" Margin="36,184,0,0" VerticalAlignment="Top" Width="127"/>
+        <Label x:Name="type_sauvegarde" Content="Type de sauvegarde" HorizontalAlignment="Left" Margin="33,268,0,0" VerticalAlignment="Top" Width="130"/>
         <TextBox x:Name="txt_sauvegarde" HorizontalAlignment="Left" Margin="179,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4D4D4"/>
         <DataGrid x:Name="DataRead" Margin="320,29,31,99" AutoGenerateColumns="False" ItemsSource="{Binding Items}">
             <DataGrid.Columns>

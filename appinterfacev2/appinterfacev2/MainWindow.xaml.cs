@@ -43,6 +43,7 @@ namespace appinterfacev2
             {
                 save.Show();
                 choix = "FR";
+                save.langue();
                 this.Close();
             }
             else
