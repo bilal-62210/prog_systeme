@@ -7,6 +7,23 @@
         mc:Ignorable="d"
         Title="acceuil_sauvegarde" Height="480" Width="820">
     <Grid>
-        <TextBox Name="test" HorizontalAlignment="Left" Margin="316,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" Text=""/>
+        <Label x:Name="nom" Content="Nom" HorizontalAlignment="Left" Margin="36,46,0,0" VerticalAlignment="Top" Width="43"/>
+        <TextBox x:Name="text_box_nom" HorizontalAlignment="Left" Margin="179,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" Background="#FFD4D4D4"/>
+        <Label x:Name="source" Content="Source" HorizontalAlignment="Left" Margin="33,121,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_source" HorizontalAlignment="Left" Margin="179,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="#FFB8B8B8" Background="#FFD4D4D4"/>
+        <TextBox x:Name="txt_cible" HorizontalAlignment="Left" Margin="179,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4D4D4"/>
+        <Label x:Name="cible" Content="Cible" HorizontalAlignment="Left" Margin="36,184,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="type_sauvegarde" Content="Type de sauvegarde" HorizontalAlignment="Left" Margin="33,268,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_sauvegarde" HorizontalAlignment="Left" Margin="179,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4D4D4"/>
+        <DataGrid x:Name="grid_data" Margin="357,23,48,113" SelectionChanged="grid_data_SelectionChanged"/>
+        <Button x:Name="btn_ajouter" Content="Ajouter" HorizontalAlignment="Left" Margin="33,380,0,0" VerticalAlignment="Top" Width="64" Click="btn_ajouter_Click"/>
+        <Button x:Name="btn_modify" Content="Modifier" HorizontalAlignment="Left" Margin="130,380,0,0" VerticalAlignment="Top" Width="66"/>
+        <Button x:Name="btn_supprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="239,380,0,0" VerticalAlignment="Top" Height="20" Width="72" Click="btn_supprimer_Click"/>
+        <Button x:Name="btn_lire" Content="Lire" HorizontalAlignment="Left" Margin="357,380,0,0" VerticalAlignment="Top" Height="20" Width="54" Click="btn_lire_Click"/>
+        <Button x:Name="btn_executer" Content="Executer" HorizontalAlignment="Left" Margin="455,379,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.589,0.568"/>
+        <Button x:Name="btn_sequentiel" Content="Execution séquentiel" HorizontalAlignment="Left" Margin="542,380,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_chiffrer" Content="Chiffrer" HorizontalAlignment="Left" Margin="710,378,0,0" VerticalAlignment="Top" Height="22" Width="62"/>
+        <Label x:Name="label_chiffre" Content="type de dossier à chiffrer" HorizontalAlignment="Left" Margin="37,316,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_chiffre" HorizontalAlignment="Left" Margin="179,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4D4D4"/>
     </Grid>
 </Window>

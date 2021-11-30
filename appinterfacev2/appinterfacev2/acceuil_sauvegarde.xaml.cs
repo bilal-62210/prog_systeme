@@ -22,18 +22,51 @@ namespace appinterfacev2
             InitializeComponent();
         }
         public delegate String del_JSON(string path, string search);
+
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            MainWindow test = new MainWindow();
-            string choice="";
-            test.choix = choice;
-            string path = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\langue.json";
-            string search = "{0}.Save.Name";
-            var js = new model();
-            del_JSON del_js = new del_JSON(js.ExeJS);
-            string a = del_js.Invoke(path, search);
-            //test.Text = a;
-            MessageBox.Show(a);  
+
         }
+
+        public void grid_data_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void btn_lire_Click(object sender, RoutedEventArgs e)
+        {
+            model lire = new model();
+            lire.read();
+        }
+
+        private void btn_ajouter_Click(object sender, RoutedEventArgs e)
+        {
+            model ajouter = new model();
+            ajouter.Create(text_box_nom.Text.ToString(),txt_source.Text.ToString(),txt_cible.Text.ToString(),txt_sauvegarde.Text.ToString(),txt_chiffre.Text.ToString());
+            text_box_nom.Text = "";
+            txt_source.Text = "";
+            txt_cible.Text = "";
+            txt_sauvegarde.Text = "";
+            txt_chiffre.Text = "";
+        }
+
+        private void btn_supprimer_Click(object sender, RoutedEventArgs e)
+        {
+            model supprimer = new model();
+            supprimer.Delete(text_box_nom.Text);
+            text_box_nom.Text = "";
+        }
+        /* private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+{
+MainWindow test = new MainWindow();
+string choice="";
+test.choix = choice;
+string path = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\langue.json";
+string search = "{0}.Save.Name";
+var js = new model();
+del_JSON del_js = new del_JSON(js.ExeJS);
+string a = del_js.Invoke(path, search);
+//test.Text = a;
+MessageBox.Show(a);  
+}*/
     }
 }
