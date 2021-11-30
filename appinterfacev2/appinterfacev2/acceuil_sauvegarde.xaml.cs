@@ -23,10 +23,16 @@ namespace appinterfacev2
             model.set = DataRead;
         }
         public delegate String del_JSON(string path, string search);
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        public void langue()
         {
-
+            string path = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\langue.json";
+            string search = MainWindow.choix+".Save.Name";
+            // to make one time at start of code to declare method and delegate
+            var js = new model();
+            del_JSON del_js = new del_JSON(js.ExeJS);
+            // invoke del_js, output : string
+           // MessageBox.Show(del_js.Invoke(path, search));
+            label_nom.Content = del_js.Invoke(path, search);
         }
 
         public void grid_data_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -36,7 +42,7 @@ namespace appinterfacev2
         private void btn_lire_Click(object sender, RoutedEventArgs e)
         {
             model lire = new model();
-            lire.Read();
+            //lire.Read();
         }
 
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
@@ -80,6 +86,11 @@ namespace appinterfacev2
             txt_cible.Text = "";
             txt_sauvegarde.Text = "";
             txt_chiffre.Text = "";
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
         /* private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
 {

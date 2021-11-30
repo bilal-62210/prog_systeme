@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="acceuil_sauvegarde" Height="480" Width="820">
     <Grid>
-        <Label x:Name="nom" Content="Nom" HorizontalAlignment="Left" Margin="36,46,0,0" VerticalAlignment="Top" Width="43"/>
+        <Label x:Name="label_nom" HorizontalAlignment="Left" Margin="36,46,0,0" VerticalAlignment="Top" Width="43" Content="Nom"/>
         <TextBox x:Name="text_box_nom" HorizontalAlignment="Left" Margin="179,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" Background="#FFD4D4D4"/>
         <Label x:Name="source" Content="Source" HorizontalAlignment="Left" Margin="33,121,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txt_source" HorizontalAlignment="Left" Margin="179,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Foreground="Black" Background="#FFD4D4D4"/>

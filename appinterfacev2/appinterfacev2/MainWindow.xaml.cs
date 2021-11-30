@@ -23,8 +23,9 @@ namespace appinterfacev2
         public MainWindow()
         {
             InitializeComponent();
+            
         }
-        public string choix = "";
+        public static string choix = "";
         private void RadioButton_Checked(object sender, RoutedEventArgs e){}
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e){}
         delegate String del_JSON(string path, string search);
@@ -35,6 +36,7 @@ namespace appinterfacev2
             {
                 save.Show();
                 choix = "EN";
+                save.langue();
                 this.Close();
             }
             else if(francais.IsChecked==true)
