@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Diagnostics;
 
 namespace appinterfacev2
 {
@@ -57,6 +59,32 @@ namespace appinterfacev2
             btn_chiffrer.Content= del_js.Invoke(path, search11);
             btn_retour.Content= del_js.Invoke(path, search12);
         }
+        public void freeze()
+        {
+            Console.WriteLine(CheckProcess());
+            if (CheckProcess())
+            {
+                HandlingProcess();
+            }
+        }
+        public static bool CheckProcess()
+        {
+            return System.Diagnostics.Process.GetProcessesByName("notepad").Length != 0;
+        }
+        public static void HandlingProcess()
+        {
+            Process[] allProcessus = Process.GetProcesses();
+            //Check if notepad process is already running.
+            foreach (Process unProcessus in allProcessus)
+            {
+                if (unProcessus.ProcessName == "notepad")
+                {
+                    MessageBox.Show("Notepad is working");
+                    unProcessus.WaitForExit();
+                }
+            }
+            MessageBox.Show("Notepad is close");
+        }
 
         public void grid_data_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -88,6 +116,7 @@ namespace appinterfacev2
 
         private void btn_executer_Click(object sender, RoutedEventArgs e)
         {
+            freeze();
             model executer = new model();
             executer.Save(text_box_nom.Text);
             text_box_nom.Text = "";
@@ -95,6 +124,7 @@ namespace appinterfacev2
 
         private void btn_sequentiel_Click(object sender, RoutedEventArgs e)
         {
+            freeze();
             model sequentiel = new model();
             sequentiel.SequentialSave();
                  

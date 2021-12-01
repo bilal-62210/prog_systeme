@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
 using System.Collections.ObjectModel;
+using System.Threading;
 
 
 namespace appinterfacev2
@@ -135,7 +136,7 @@ namespace appinterfacev2
                     File.AppendAllText(jsonpath, jsondata);
                     jsondata2 = "[" + JsonConvert.SerializeObject(avance, Formatting.Indented) + "]";
                     File.WriteAllText(pathAvancement, jsondata2);
-                    MessageBox.Show(":)");
+                    content();
                 }
             else
             {
@@ -426,6 +427,9 @@ namespace appinterfacev2
             foreach (var data in Data)
             {
                 Save(data.Nom);
+                acceuil_sauvegarde gel = new acceuil_sauvegarde();
+                Thread.Sleep(2000);
+                gel.freeze();
             }
         }
         protected static string AskForJsonFileName(string JsonPath)
