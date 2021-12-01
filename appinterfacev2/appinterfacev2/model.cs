@@ -60,6 +60,17 @@ namespace appinterfacev2
         string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\save1.json";
         string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\journalier.json";
         string pathAvancement = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\avancement.json";
+        public void pascontent()
+        {
+            string pascontent = char.ConvertFromUtf32(0x1F624);
+            MessageBox.Show(pascontent + pascontent + pascontent + pascontent + pascontent + pascontent + pascontent);
+        }
+
+        public void content()
+        {
+            string content = char.ConvertFromUtf32(0x1F601);
+            MessageBox.Show(content + content + content + content + content + content + content);
+        }
         //methode permettant de lire les json
         public void Read()
         {
@@ -77,7 +88,7 @@ namespace appinterfacev2
             }
             catch
             {
-                MessageBox.Show("impossible");
+                pascontent();
             }
         }
         //methode permettant de créer les travaux
@@ -161,7 +172,7 @@ namespace appinterfacev2
                             break;
                         }
                     }
-                    MessageBox.Show(":)");
+                    content();
                 }
                 else
                 {
@@ -172,7 +183,7 @@ namespace appinterfacev2
                     list2.Add(avance);
                     jsondata2 = JsonConvert.SerializeObject(list2, Formatting.Indented);
                     File.WriteAllText(pathAvancement, jsondata2);
-                    MessageBox.Show(":)");
+                    content();
                 }
             }
             
@@ -258,7 +269,7 @@ namespace appinterfacev2
             }
             jsonText2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
             File.WriteAllText(pathAvancement, jsonText2);
-            MessageBox.Show(":)");
+            content();
         }
         //methode permettant d'executer les travaux
         public void Save(string ChoixNom)
@@ -326,7 +337,7 @@ namespace appinterfacev2
                         sw.Stop();
                         TimeSpan Timer = sw.Elapsed;
                         Journalier(Name, source, target, Size, Timer);
-                        MessageBox.Show(":)");
+                        content(); 
                     }
                     else
                     {
@@ -360,8 +371,7 @@ namespace appinterfacev2
                         float Progression = 0;
                         var sw = Stopwatch.StartNew();
                         int FileToDo = TotalFiles;
-                        MessageBox.Show(":)");
-
+                        content();
                         foreach (string s in files)
                         {
                             foreach (string S in Files)
@@ -399,7 +409,7 @@ namespace appinterfacev2
                 }
                 else
                 {
-                    MessageBox.Show("Source path does not exist!/ La source n'existe pas!");
+                    pascontent();
                 }
             }
             else
