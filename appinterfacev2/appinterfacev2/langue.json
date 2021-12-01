@@ -16,7 +16,9 @@
       "Read": "Lire",
       "Execute": "Executer sauvegarde",
       "Sequential": "Sauvegarde sequentielle",
+      "Chiffrement":  "Chiffrer",
       "Quit": "Quitter",
+      "Retour":  "retour",
       "Option": "Votre option:",
       "press_any_key": "Appuyer sur une touche pour fermer la console"
     }
@@ -37,7 +39,9 @@
       "Read": "Read",
       "Execute": "run backup",
       "Sequential": "Sequential backup",
+      "Chiffrement":  "Encrypt",
       "Quit": "Quit",
+      "Retour": "back",
       "Option": "Your option:",
       "press_any_key": "Press any key to close the console app..."
     }

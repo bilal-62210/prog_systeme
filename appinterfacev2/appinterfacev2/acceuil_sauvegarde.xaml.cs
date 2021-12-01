@@ -37,7 +37,8 @@ namespace appinterfacev2
             string search8 = MainWindow.choix + ".Interface.Read";
             string search9 = MainWindow.choix + ".Interface.Execute";
             string search10 = MainWindow.choix + ".Interface.Sequential";
-            string search11 = MainWindow.choix + ".Interface.";
+            string search11 = MainWindow.choix + ".Interface.Chiffrement";
+            string search12 = MainWindow.choix + ".Interface.Retour";
             // to make one time at start of code to declare method and delegate
             var js = new model();
             del_JSON del_js = new del_JSON(js.ExeJS);
@@ -49,6 +50,12 @@ namespace appinterfacev2
             label_chiffre.Content= del_js.Invoke(path, search4);
             btn_ajouter.Content= del_js.Invoke(path, search5);
             btn_modify.Content= del_js.Invoke(path, search6);
+            btn_supprimer.Content= del_js.Invoke(path, search7);
+            btn_lire.Content= del_js.Invoke(path, search8);
+            btn_executer.Content= del_js.Invoke(path, search9);
+            btn_sequentiel.Content= del_js.Invoke(path, search10);
+            btn_chiffrer.Content= del_js.Invoke(path, search11);
+            btn_retour.Content= del_js.Invoke(path, search12);
         }
 
         public void grid_data_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,7 +65,7 @@ namespace appinterfacev2
         private void btn_lire_Click(object sender, RoutedEventArgs e)
         {
             model lire = new model();
-            //lire.Read();
+            lire.Read();
         }
 
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
@@ -107,6 +114,13 @@ namespace appinterfacev2
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void btn_retour_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow retour = new MainWindow();
+            retour.Show();
+            this.Close();
         }
         /* private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
 {

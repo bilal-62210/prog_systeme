@@ -67,11 +67,18 @@ namespace appinterfacev2
             string json = r.ReadToEnd();
             List<data> table = JsonConvert.DeserializeObject<List<data>>(json);
             List<Items> items = new List<Items>();
-            foreach (var data in table)
+            try
             {
-                items.Add(new Items { Nom = data.Nom, Sources = data.Sources, Cible = data.Cible, Types = data.Types, chiffrement = data.chiffrement });
+                foreach (var data in table)
+                {
+                    items.Add(new Items { Nom = data.Nom, Sources = data.Sources, Cible = data.Cible, Types = data.Types, chiffrement = data.chiffrement });
+                }
+                set.ItemsSource = items;
             }
-            set.ItemsSource = items;
+            catch
+            {
+                MessageBox.Show("impossible");
+            }
         }
         //methode permettant de créer les travaux
         public void Create(string NameSave, string SourceSave, string TargetSave, string TypeSave, string chiffre)
@@ -110,13 +117,7 @@ namespace appinterfacev2
                     TotalFilesSize = "0",
                     NbFilesLeftToDo = "0"
                 };
-                foreach (var data in list)
-                {
-                    if (data.Nom == null)
-                    {
-                        result = true;
-                    }
-                }
+                
             if (list == null)
                 {
                     jsondata = "[" + JsonConvert.SerializeObject(Save, Formatting.Indented) + "]";
@@ -125,35 +126,44 @@ namespace appinterfacev2
                     File.WriteAllText(pathAvancement, jsondata2);
                     MessageBox.Show("ajouter avec succès");
                 }
-            else if (result == true)
-            {
-                foreach (var data in list.Where(x => x.Nom == null))
-                {
-                    data.Nom = NameSave;
-                    data.Sources = SourceSave;
-                    data.Cible = TargetSave;
-                    data.Types = TypeSave;
-                    data.chiffrement = chiffre;
-                    jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
-                    File.WriteAllText(jsonpath, jsondata);
-                    if (data.Nom == NameSave)
-                    {
-                        break;
-                    }
-                }
-                foreach (var data in list2.Where(x => x.Name == null))
-                {
-                    data.Name = NameSave;
-                    jsondata2 = JsonConvert.SerializeObject(list2, Formatting.Indented);
-                    File.WriteAllText(pathAvancement, jsondata2);
-                    if (data.Name == NameSave)
-                    {
-                        break;
-                    }
-                }
-                MessageBox.Show("Save created");
-            }
             else
+            {
+                foreach (var data in list)
+                {
+                    if (data.Nom == null)
+                    {
+                        result = true;
+                    }
+                }
+                if (result == true)
+                {
+                    foreach (var data in list.Where(x => x.Nom == null))
+                    {
+                        data.Nom = NameSave;
+                        data.Sources = SourceSave;
+                        data.Cible = TargetSave;
+                        data.Types = TypeSave;
+                        data.chiffrement = chiffre;
+                        jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
+                        File.WriteAllText(jsonpath, jsondata);
+                        if (data.Nom == NameSave)
+                        {
+                            break;
+                        }
+                    }
+                    foreach (var data in list2.Where(x => x.Name == null))
+                    {
+                        data.Name = NameSave;
+                        jsondata2 = JsonConvert.SerializeObject(list2, Formatting.Indented);
+                        File.WriteAllText(pathAvancement, jsondata2);
+                        if (data.Name == NameSave)
+                        {
+                            break;
+                        }
+                    }
+                    MessageBox.Show("Save created");
+                }
+                else
                 {
 
                     list.Add(Save);
@@ -163,7 +173,9 @@ namespace appinterfacev2
                     jsondata2 = JsonConvert.SerializeObject(list2, Formatting.Indented);
                     File.WriteAllText(pathAvancement, jsondata2);
                     MessageBox.Show("ajouter avec succès");
+                }
             }
+            
         }
         //methode permettant de modifier les travaux
         public void Modify(string nom_save, string source, string cible, string type, string chiffre)
