@@ -122,18 +122,5 @@ namespace appinterfacev2
             retour.Show();
             this.Close();
         }
-        /* private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-{
-MainWindow test = new MainWindow();
-string choice="";
-test.choix = choice;
-string path = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\langue.json";
-string search = "{0}.Save.Name";
-var js = new model();
-del_JSON del_js = new del_JSON(js.ExeJS);
-string a = del_js.Invoke(path, search);
-//test.Text = a;
-MessageBox.Show(a);  
-}*/
     }
 }
