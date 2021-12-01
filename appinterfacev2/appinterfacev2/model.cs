@@ -124,7 +124,7 @@ namespace appinterfacev2
                     File.AppendAllText(jsonpath, jsondata);
                     jsondata2 = "[" + JsonConvert.SerializeObject(avance, Formatting.Indented) + "]";
                     File.WriteAllText(pathAvancement, jsondata2);
-                    MessageBox.Show("ajouter avec succès");
+                    MessageBox.Show(":)");
                 }
             else
             {
@@ -161,7 +161,7 @@ namespace appinterfacev2
                             break;
                         }
                     }
-                    MessageBox.Show("Save created");
+                    MessageBox.Show(":)");
                 }
                 else
                 {
@@ -172,7 +172,7 @@ namespace appinterfacev2
                     list2.Add(avance);
                     jsondata2 = JsonConvert.SerializeObject(list2, Formatting.Indented);
                     File.WriteAllText(pathAvancement, jsondata2);
-                    MessageBox.Show("ajouter avec succès");
+                    MessageBox.Show(":)");
                 }
             }
             
@@ -258,7 +258,7 @@ namespace appinterfacev2
             }
             jsonText2 = JsonConvert.SerializeObject(Data2, Formatting.Indented);
             File.WriteAllText(pathAvancement, jsonText2);
-            MessageBox.Show("supprimer avec succes");
+            MessageBox.Show(":)");
         }
         //methode permettant d'executer les travaux
         public void Save(string ChoixNom)
@@ -326,7 +326,7 @@ namespace appinterfacev2
                         sw.Stop();
                         TimeSpan Timer = sw.Elapsed;
                         Journalier(Name, source, target, Size, Timer);
-                        MessageBox.Show("executer avec succes");
+                        MessageBox.Show(":)");
                     }
                     else
                     {
@@ -360,7 +360,7 @@ namespace appinterfacev2
                         float Progression = 0;
                         var sw = Stopwatch.StartNew();
                         int FileToDo = TotalFiles;
-                        MessageBox.Show("executer avec succes");
+                        MessageBox.Show(":)");
 
                         foreach (string s in files)
                         {
