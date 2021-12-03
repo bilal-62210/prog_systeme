@@ -1,6 +1,14 @@
-[{
-  "Nom": "save",
-  "Sources": "hb",
-  "Cible": "sqd",
-  "Types": "complet"
-}]
+[
+  {
+    "Nom": "save",
+    "Sources": "hb",
+    "Cible": "sqd",
+    "Types": "complet"
+  },
+  {
+    "Nom": "save1",
+    "Sources": "C:\\debut",
+    "Cible": "C:\\fin",
+    "Types": "complet"
+  }
+]
