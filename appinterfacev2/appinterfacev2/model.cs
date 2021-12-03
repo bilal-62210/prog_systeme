@@ -323,11 +323,8 @@ namespace appinterfacev2
                         Journalier(Name, source, target, Size, Timer);
                         content();
                         p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
-                        MessageBox.Show(Target);
                         string str = sources.ToString() + " " + cible.ToString() + " " + chiffre.ToString();
-                        MessageBox.Show(str);
                         p.StartInfo.Arguments = str;
-                        MessageBox.Show(p.StartInfo.Arguments);
                         p.Start();
                         p.WaitForExit();
                         foreach (string s in files)
@@ -388,11 +385,8 @@ namespace appinterfacev2
                         int FileToDo = TotalFiles;
                         content();
                         p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
-                        MessageBox.Show(Target);
                         string str = sources.ToString() + " " + cible.ToString() + " " + chiffre.ToString();
-                        MessageBox.Show(str);
                         p.StartInfo.Arguments = str;
-                        MessageBox.Show(p.StartInfo.Arguments);
                         p.Start();
                         p.WaitForExit();
                         foreach (string s in files)
