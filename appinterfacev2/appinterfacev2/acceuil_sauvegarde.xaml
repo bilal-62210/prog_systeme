@@ -30,9 +30,12 @@
         <Button x:Name="btn_lire" Content="" HorizontalAlignment="Left" Margin="339,413,0,0" VerticalAlignment="Top" Height="20" Width="54" Click="btn_lire_Click"/>
         <Button x:Name="btn_executer" Content="" HorizontalAlignment="Left" Margin="430,413,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.589,0.568" Click="btn_executer_Click"/>
         <Button x:Name="btn_sequentiel" Content="" HorizontalAlignment="Left" Margin="554,413,0,0" VerticalAlignment="Top" Click="btn_sequentiel_Click"/>
-        <Button x:Name="btn_chiffrer" Content="" HorizontalAlignment="Left" Margin="708,411,0,0" VerticalAlignment="Top" Height="22" Width="62" Click="btn_chiffrer_Click"/>
         <Label x:Name="label_chiffre" Content="" HorizontalAlignment="Left" Margin="10,347,0,0" VerticalAlignment="Top" Width="153"/>
         <TextBox x:Name="txt_chiffre" HorizontalAlignment="Left" Margin="179,351,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4D4D4"/>
         <Button x:Name="btn_retour" Content=""  Margin="28,32,0,0" Width="40" Click="btn_retour_Click" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <ComboBox x:Name="journalier" HorizontalAlignment="Left" Margin="179,29,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="journalier_SelectionChanged">
+            <ComboBoxItem Content="json"></ComboBoxItem>
+            <ComboBoxItem Content="xml"></ComboBoxItem>
+        </ComboBox>
     </Grid>
 </Window>

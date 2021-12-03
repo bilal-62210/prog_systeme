@@ -23,6 +23,7 @@ namespace appinterfacev2
         {
             InitializeComponent();
             model.set = DataRead;
+            model.extent = journalier;
         }
         public delegate String del_JSON(string path, string search);
         public void langue()
@@ -39,7 +40,6 @@ namespace appinterfacev2
             string search8 = MainWindow.choix + ".Interface.Read";
             string search9 = MainWindow.choix + ".Interface.Execute";
             string search10 = MainWindow.choix + ".Interface.Sequential";
-            string search11 = MainWindow.choix + ".Interface.Chiffrement";
             string search12 = MainWindow.choix + ".Interface.Retour";
             // to make one time at start of code to declare method and delegate
             var js = new model();
@@ -56,7 +56,6 @@ namespace appinterfacev2
             btn_lire.Content= del_js.Invoke(path, search8);
             btn_executer.Content= del_js.Invoke(path, search9);
             btn_sequentiel.Content= del_js.Invoke(path, search10);
-            btn_chiffrer.Content= del_js.Invoke(path, search11);
             btn_retour.Content= del_js.Invoke(path, search12);
         }
         public void freeze()
@@ -155,9 +154,9 @@ namespace appinterfacev2
             this.Close();
         }
 
-        private void btn_chiffrer_Click(object sender, RoutedEventArgs e)
+        private void journalier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
     }
 }

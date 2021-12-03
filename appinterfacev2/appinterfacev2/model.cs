@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Collections.ObjectModel;
 using System.Threading;
+using System.Xml.Serialization;
 
 
 namespace appinterfacev2
@@ -58,6 +59,8 @@ namespace appinterfacev2
         public string Type;
         public string chiffres;
         public static DataGrid set = new DataGrid();
+        public static ComboBox extent = new ComboBox();
+        string pathJournalierXML = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\log.xml";
         string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\save1.json";
         string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\journalier.json";
         string pathAvancement = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\avancement.json";
@@ -466,41 +469,81 @@ namespace appinterfacev2
         }
         protected void Journalier(string NameSave, string SourceSave, string TargetSave, int SizeSave, TimeSpan TransfertSave)
         {
-            var nbr = new model();
-            AskForJsonFileName(pathjournalier);
-
-            var jsondata = File.ReadAllText(pathjournalier);
-            var list = JsonConvert.DeserializeObject<List<log_journalier>>(jsondata);
-
-            if (list == null)
+            //strucuture log_journalier
+            log_journalier Save = new log_journalier
             {
-                log_journalier Save = new log_journalier
+                Nom = NameSave,
+                Sources = SourceSave,
+                Cible = TargetSave,
+                size = SizeSave.ToString(),
+                filetransfertime = TransfertSave.ToString(),
+                time = DateTime.Now
+            };
+
+            var choix = extent.Text;
+
+            if (choix == "json")
+            {
+                var jsondata = File.ReadAllText(pathjournalier);
+                var list = JsonConvert.DeserializeObject<List<log_journalier>>(jsondata);
+
+                //si le log journalier est vide
+                if (list == null)
                 {
-                    Nom = NameSave,
-                    Sources = SourceSave,
-                    Cible = TargetSave,
-                    size = SizeSave.ToString(),
-                    filetransfertime = TransfertSave.ToString(),
-                    time = DateTime.Now
-                };
-                jsondata = "[" + JsonConvert.SerializeObject(Save, Formatting.Indented) + "]";
-                File.WriteAllText(pathjournalier, jsondata);
+                    jsondata = "[" + JsonConvert.SerializeObject(Save, Formatting.Indented) + "]";
+                    File.WriteAllText(pathjournalier, jsondata);
+                }
+
+                //si le log journalier est non vide
+                else
+                {
+                    list.Add(Save);
+                    jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
+                    File.WriteAllText(pathjournalier, jsondata);
+                }
             }
-            else
+            if (choix == "xml")
             {
-                log_journalier save = new log_journalier
-                {
-                    Nom = NameSave,
-                    Sources = SourceSave,
-                    Cible = TargetSave,
-                    size = SizeSave.ToString(),
-                    filetransfertime = TransfertSave.ToString(),
-                    time = DateTime.Now
-                };
+                XmlSerializer serializer = new XmlSerializer(typeof(log_journalier));
 
-                list.Add(save);
-                jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
-                File.WriteAllText(pathjournalier, jsondata);
+                try
+                {
+                    FileStream stream = File.OpenWrite(pathJournalierXML);
+                    serializer.Serialize(stream, new log_journalier()
+                    {
+                        Nom = NameSave,
+                        Sources = SourceSave,
+                        Cible = TargetSave,
+                        size = SizeSave.ToString(),
+                        filetransfertime = TransfertSave.ToString(),
+                        time = DateTime.Now
+                    });
+
+                    stream.Dispose();
+
+                    FileStream streamread = File.OpenRead(pathJournalierXML);
+
+                    var result = (log_journalier)(serializer.Deserialize(streamread));
+                }
+                catch
+                {
+                    FileStream stream = File.OpenWrite(pathJournalierXML);
+                    serializer.Serialize(stream, new log_journalier()
+                    {
+                        Nom = NameSave,
+                        Sources = SourceSave,
+                        Cible = TargetSave,
+                        size = SizeSave.ToString(),
+                        filetransfertime = TransfertSave.ToString(),
+                        time = DateTime.Now
+                    });
+
+                    stream.Dispose();
+
+                    FileStream streamread = File.OpenRead(pathJournalierXML);
+
+                    var result = (log_journalier)(serializer.Deserialize(streamread));
+                }
             }
         }
         protected void avancement(string NameSave, string SourceSave, string TargetSave, string State, int FileToCopy, int FileSize, int FileToDo, float Progression)
@@ -539,16 +582,6 @@ namespace appinterfacev2
             public string Types { get; set; }
             public string chiffrement { get; set; }
         }
-        class log_journalier
-        {
-            public string Nom { get; set; }
-            public string Sources { get; set; }
-            public string Cible { get; set; }
-            public string size { get; set; }
-            public string filetransfertime { get; set; }
-            public DateTime time { get; set; }
-
-        }
         class Items : data { }
         class log_avancement
         {
@@ -561,6 +594,16 @@ namespace appinterfacev2
             public string TotalFilesSize { get; set; }
             public string NbFilesLeftToDo { get; set; }
         }
+
+    }
+    public class log_journalier
+    {
+        public string Nom { get; set; }
+        public string Sources { get; set; }
+        public string Cible { get; set; }
+        public string size { get; set; }
+        public string filetransfertime { get; set; }
+        public DateTime time { get; set; }
 
     }
 }
