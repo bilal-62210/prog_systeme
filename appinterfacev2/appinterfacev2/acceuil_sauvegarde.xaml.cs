@@ -116,10 +116,12 @@ namespace appinterfacev2
 
         private void btn_executer_Click(object sender, RoutedEventArgs e)
         {
+           
             freeze();
             model executer = new model();
             executer.Save(text_box_nom.Text);
             text_box_nom.Text = "";
+
         }
 
         private void btn_sequentiel_Click(object sender, RoutedEventArgs e)
@@ -151,6 +153,11 @@ namespace appinterfacev2
             MainWindow retour = new MainWindow();
             retour.Show();
             this.Close();
+        }
+
+        private void btn_chiffrer_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

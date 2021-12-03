@@ -1,0 +1,28 @@
+﻿<Window x:Class="Cryptosoft.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cryptosoft"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label Name="Nom" Content="Nom / Name" HorizontalAlignment="Left" Margin="133,73,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <TextBox Name ="Save" HorizontalAlignment="Left" Margin="144,128,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="25"/>
+        <Label Content="Extension" HorizontalAlignment="Left" Margin="146,221,0,0" VerticalAlignment="Top" FontSize="25"/>
+        <ComboBox Name="extension" HorizontalAlignment="Left" Margin="95,269,0,0" VerticalAlignment="Top" Width="238" FontSize="25">
+            <ComboBoxItem IsSelected="True">.txt</ComboBoxItem>
+            <ComboBoxItem>.html</ComboBoxItem>
+            <ComboBoxItem>.cs</ComboBoxItem>
+            <ComboBoxItem>.js</ComboBoxItem>
+            <ComboBoxItem>.css</ComboBoxItem>
+            <ComboBoxItem>.dll</ComboBoxItem>
+            <ComboBoxItem>.sql</ComboBoxItem>
+        </ComboBox>
+        <Button Content="Chiffrer / Encrypt" HorizontalAlignment="Left" Margin="501,59,0,0" VerticalAlignment="Top" FontSize="24" Click="Crypt_Button_Click"/>
+        <Button Content="Chiffrer tout / Encrypt all" HorizontalAlignment="Left" Margin="460,236,0,0" VerticalAlignment="Top" FontSize="24" Click="CryptAll_Button_Click"/>
+        <Button Content="Déchiffrer / Decrypt" HorizontalAlignment="Left" Margin="486,146,0,0" VerticalAlignment="Top" FontSize="24" Click="Decrypt_Button_Click"/>
+        <Button Content="Déchiffrer tout / Decrypt all" HorizontalAlignment="Left" Margin="446,326,0,0" VerticalAlignment="Top" FontSize="24" Click="DecryptAll_Button_Click"/>
+
+    </Grid>
+</Window>

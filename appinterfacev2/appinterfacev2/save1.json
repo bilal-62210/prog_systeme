@@ -1,10 +1,10 @@
 [
   {
     "Nom": "save1",
-    "Sources": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\debut",
-    "Cible": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\fin",
+    "Sources": "C:\\debut",
+    "Cible": "C:\\fin",
     "Types": "complet",
-    "chiffrement": ".doc"
+    "chiffrement": "*.txt *.pdf"
   },
   {
     "Nom": "save2",

@@ -52,11 +52,11 @@ namespace appinterfacev2
             //Searching in JSON File support multiple parameters
             return jsonFile.SelectToken(search);
         }
-        private string Name;
-        private string Source;
-        private string Target;
-        private string Type;
-        private string chiffres;
+        public string Name;
+        public string Source;
+        public string Target;
+        public string Type;
+        public string chiffres;
         public static DataGrid set = new DataGrid();
         string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\save1.json";
         string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\journalier.json";
@@ -290,6 +290,12 @@ namespace appinterfacev2
             {
                 if (System.IO.Directory.Exists(Source))
                 {
+                    Process p = new Process();
+                   // string path = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\save1.json";
+                    string sources = Source;
+                    string cible = Target;
+                    string chiffre = chiffres;
+                  
                     if (Type == "complet" | Type == "Complet")
                     {
                         var source = Source;
@@ -312,6 +318,18 @@ namespace appinterfacev2
                         var sw = Stopwatch.StartNew();
                         int TotalFiles = Directory.GetFiles(Source, "*.*", SearchOption.TopDirectoryOnly).Length;
                         int FileToDo = TotalFiles;
+                        sw.Stop();
+                        TimeSpan Timer = sw.Elapsed;
+                        Journalier(Name, source, target, Size, Timer);
+                        content();
+                        p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
+                        MessageBox.Show(Target);
+                        string str = sources.ToString() + " " + cible.ToString() + " " + chiffre.ToString();
+                        MessageBox.Show(str);
+                        p.StartInfo.Arguments = str;
+                        MessageBox.Show(p.StartInfo.Arguments);
+                        p.Start();
+                        p.WaitForExit();
                         foreach (string s in files)
                         {
                             for (int i = 0; i < TotalFiles; i++)
@@ -335,10 +353,6 @@ namespace appinterfacev2
                                 avancement(Name, Source, Target, state, TotalFiles, TotalSize, FileToDo, Progression);
                             }
                         }
-                        sw.Stop();
-                        TimeSpan Timer = sw.Elapsed;
-                        Journalier(Name, source, target, Size, Timer);
-                        content(); 
                     }
                     else
                     {
@@ -373,6 +387,14 @@ namespace appinterfacev2
                         var sw = Stopwatch.StartNew();
                         int FileToDo = TotalFiles;
                         content();
+                        p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
+                        MessageBox.Show(Target);
+                        string str = sources.ToString() + " " + cible.ToString() + " " + chiffre.ToString();
+                        MessageBox.Show(str);
+                        p.StartInfo.Arguments = str;
+                        MessageBox.Show(p.StartInfo.Arguments);
+                        p.Start();
+                        p.WaitForExit();
                         foreach (string s in files)
                         {
                             foreach (string S in Files)
@@ -417,6 +439,9 @@ namespace appinterfacev2
             {
                 System.IO.Directory.CreateDirectory(Target);
             }
+        }
+        public void chiffrement()
+        {
         }
         //methode permettant d'executer séquentiellement les travaux
         public void SequentialSave()
