@@ -1,4 +1,3 @@
-//penser à la manière/phrase pour choix de langue
 {
   "FR": {
     "Save": {
@@ -54,7 +53,7 @@
       "type": "tipo de copia de seguridad"
     },
     "Interface": {
-      "take_choice": "Elija una opción de la siguiente lista:",
+      "take_choice": "Elija una opciï¿½n de la siguiente lista:",
       "Add": "Agregar",
       "Modify": "Editar",
       "Delete": "Borrar",
@@ -62,8 +61,8 @@
       "Execute": "Ejecutar copia de seguridad",
       "Sequential": "Copia de seguridad secuencial",
       "Quit": "Dejar",
-      "Option": "tu opción",
-      "press_any_key": "Presione un botón para cerrar la consola..."
+      "Option": "tu opciï¿½n",
+      "press_any_key": "Presione un botï¿½n para cerrar la consola..."
     }
   },
   "HT": {
@@ -83,7 +82,7 @@
       "Sequential": "Sovgad sekans",
       "Quit": "Pou kite",
       "Option": "Opsyon w la",
-      "press_any_key": "Peze yon bouton pou fèmen konsole a..."
+      "press_any_key": "Peze yon bouton pou fï¿½men konsole a..."
     }
   }
 
