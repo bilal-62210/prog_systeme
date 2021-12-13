@@ -6,7 +6,9 @@
       "Source": "Source de la sauvegarde:",
       "Target": "Cible de la sauvegarde:",
       "Type": "Type de sauvegarde:",
-      "Chiffre":  "type de chiffrement:"
+      "Chiffre": "type de chiffrement:",
+      "Priorite": "Fichiers prioritaires:",
+      "Format": "Format fichier journalier:"
     },
     "Interface": {
       "take_choice": "Choisissez une option dans la liste suivante :",
@@ -29,7 +31,9 @@
       "Source": "Backup source",
       "Target": "Backup target ",
       "Type": "Backup type",
-      "Chiffre": "encryption type:"
+      "Chiffre": "encryption type:",
+      "Priorite": "priority files:",
+      "Format": "daily file format:"
     },
     "Interface": {
       "take_choice": "Choose an option from the following list :",

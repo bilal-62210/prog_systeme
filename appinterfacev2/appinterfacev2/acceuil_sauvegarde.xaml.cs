@@ -41,6 +41,8 @@ namespace appinterfacev2
             string search9 = MainWindow.choix + ".Interface.Execute";
             string search10 = MainWindow.choix + ".Interface.Sequential";
             string search12 = MainWindow.choix + ".Interface.Retour";
+            string search13 = MainWindow.choix + ".Save.Priorite";
+            string search14 = MainWindow.choix + ".Save.Format"; 
             // to make one time at start of code to declare method and delegate
             var js = new model();
             del_JSON del_js = new del_JSON(js.ExeJS);
@@ -57,6 +59,8 @@ namespace appinterfacev2
             btn_executer.Content= del_js.Invoke(path, search9);
             btn_sequentiel.Content= del_js.Invoke(path, search10);
             btn_retour.Content= del_js.Invoke(path, search12);
+            label_priorite.Content= del_js.Invoke(path, search13);
+            label_journalier.Content= del_js.Invoke(path, search14);
         }
         public void freeze()
         {
@@ -158,5 +162,7 @@ namespace appinterfacev2
         {
 
         }
+
+        private void txt_priorite_TextChanged(object sender, TextChangedEventArgs e){}
     }
 }

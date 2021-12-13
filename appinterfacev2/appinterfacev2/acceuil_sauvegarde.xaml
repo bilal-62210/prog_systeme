@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:appinterfacev2"
         mc:Ignorable="d"
-        Title="acceuil_sauvegarde" Height="480" Width="820">
+        Title="acceuil_sauvegarde" Height="600" Width="1080">
     <Grid>
         <Label x:Name="label_nom" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="153" Content=""/>
         <TextBox x:Name="text_box_nom" HorizontalAlignment="Left" Margin="179,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" Background="#FFD4D4D4"/>
@@ -24,18 +24,21 @@
                 <DataGridTextColumn Header="chiffrement" Binding="{Binding Path=chiffrement}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btn_ajouter" Content="" HorizontalAlignment="Left" Margin="36,413,0,0" VerticalAlignment="Top" Width="64" Click="btn_ajouter_Click"/>
-        <Button x:Name="btn_modify" Content="" HorizontalAlignment="Left" Margin="134,413,0,0" VerticalAlignment="Top" Width="66" Click="btn_modify_Click"/>
-        <Button x:Name="btn_supprimer" Content="" HorizontalAlignment="Left" Margin="227,413,0,0" VerticalAlignment="Top" Height="20" Width="72" Click="btn_supprimer_Click"/>
-        <Button x:Name="btn_lire" Content="" HorizontalAlignment="Left" Margin="339,413,0,0" VerticalAlignment="Top" Height="20" Width="54" Click="btn_lire_Click"/>
-        <Button x:Name="btn_executer" Content="" HorizontalAlignment="Left" Margin="430,413,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.589,0.568" Click="btn_executer_Click"/>
-        <Button x:Name="btn_sequentiel" Content="" HorizontalAlignment="Left" Margin="554,413,0,0" VerticalAlignment="Top" Click="btn_sequentiel_Click"/>
+        <Button x:Name="btn_ajouter" Content="" HorizontalAlignment="Left" Margin="135,522,0,0" VerticalAlignment="Top" Width="64" Click="btn_ajouter_Click"/>
+        <Button x:Name="btn_modify" Content="" HorizontalAlignment="Left" Margin="266,522,0,0" VerticalAlignment="Top" Width="66" Click="btn_modify_Click"/>
+        <Button x:Name="btn_supprimer" Content="" HorizontalAlignment="Left" Margin="402,522,0,0" VerticalAlignment="Top" Height="20" Width="72" Click="btn_supprimer_Click"/>
+        <Button x:Name="btn_lire" Content="" HorizontalAlignment="Left" Margin="559,522,0,0" VerticalAlignment="Top" Height="20" Width="54" Click="btn_lire_Click"/>
+        <Button x:Name="btn_executer" Content="" HorizontalAlignment="Left" Margin="721,522,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.589,0.568" Click="btn_executer_Click"/>
+        <Button x:Name="btn_sequentiel" Content="" HorizontalAlignment="Left" Margin="916,522,0,0" VerticalAlignment="Top" Click="btn_sequentiel_Click"/>
         <Label x:Name="label_chiffre" Content="" HorizontalAlignment="Left" Margin="10,347,0,0" VerticalAlignment="Top" Width="153"/>
         <TextBox x:Name="txt_chiffre" HorizontalAlignment="Left" Margin="179,351,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4D4D4"/>
         <Button x:Name="btn_retour" Content=""  Margin="28,32,0,0" Width="40" Click="btn_retour_Click" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <ComboBox x:Name="journalier" HorizontalAlignment="Left" Margin="179,29,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="journalier_SelectionChanged">
+        <ComboBox x:Name="journalier" HorizontalAlignment="Left" Margin="179,463,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="journalier_SelectionChanged">
             <ComboBoxItem Content="json"></ComboBoxItem>
             <ComboBoxItem Content="xml"></ComboBoxItem>
         </ComboBox>
+        <Label x:Name="label_priorite" Content="" HorizontalAlignment="Left" Margin="14,405,0,0" VerticalAlignment="Top" Width="149"/>
+        <TextBox x:Name="txt_priorite" HorizontalAlignment="Left" Margin="179,405,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="26" TextChanged="txt_priorite_TextChanged" Background="#FFD4D4D4"/>
+        <Label x:Name="label_journalier" Content="" HorizontalAlignment="Left" Margin="14,461,0,0" VerticalAlignment="Top" Width="149"/>
     </Grid>
 </Window>

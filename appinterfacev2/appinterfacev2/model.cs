@@ -58,6 +58,7 @@ namespace appinterfacev2
         public string Target;
         public string Type;
         public string chiffres;
+        public string priorite;
         public static DataGrid set = new DataGrid();
         public static ComboBox extent = new ComboBox();
         string pathJournalierXML = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\log.xml";
@@ -96,7 +97,7 @@ namespace appinterfacev2
             }
         }
         //methode permettant de créer les travaux
-        public void Create(string NameSave, string SourceSave, string TargetSave, string TypeSave, string chiffre)
+        public void Create(string NameSave, string SourceSave, string TargetSave, string TypeSave, string chiffre, string priorites)
         {
             var result = false;
             Name = NameSave;
@@ -104,6 +105,7 @@ namespace appinterfacev2
             Target = TargetSave;
             Type = TypeSave;
             chiffres = chiffre;
+            priorite = priorites;
                 AskForJsonFileName(jsonpath);
                 var jsondata = File.ReadAllText(jsonpath);
                 var list = JsonConvert.DeserializeObject<List<data>>(jsondata);
@@ -118,7 +120,8 @@ namespace appinterfacev2
                 Sources = SourceSave,
                 Cible = TargetSave,
                 Types = TypeSave,
-                chiffrement = chiffre
+                chiffrement = chiffre,
+                prio = priorites,
                 };
 
                 log_avancement avance = new log_avancement
@@ -159,6 +162,7 @@ namespace appinterfacev2
                         data.Cible = TargetSave;
                         data.Types = TypeSave;
                         data.chiffrement = chiffre;
+                        data.prio = priorites;
                         jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
                         File.WriteAllText(jsonpath, jsondata);
                         if (data.Nom == NameSave)
@@ -288,6 +292,7 @@ namespace appinterfacev2
                 Target = data.Cible;
                 Type = data.Types;
                 chiffres = data.chiffrement;
+                priorite = data.prio;
             }
             if (System.IO.Directory.Exists(Target))
             {
@@ -298,6 +303,7 @@ namespace appinterfacev2
                     string sources = Source;
                     string cible = Target;
                     string chiffre = chiffres;
+                    string prioritee = priorite;
                   
                     if (Type == "complet" | Type == "Complet")
                     {
@@ -436,9 +442,6 @@ namespace appinterfacev2
             {
                 System.IO.Directory.CreateDirectory(Target);
             }
-        }
-        public void chiffrement()
-        {
         }
         //methode permettant d'executer séquentiellement les travaux
         public void SequentialSave()
@@ -581,6 +584,8 @@ namespace appinterfacev2
             public string Cible { get; set; }
             public string Types { get; set; }
             public string chiffrement { get; set; }
+            public string prio { get; set; }
+
         }
         class Items : data { }
         class log_avancement
