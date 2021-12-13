@@ -102,7 +102,7 @@ namespace appinterfacev2
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
         {
             model ajouter = new model();
-            ajouter.Create(text_box_nom.Text.ToString(),txt_source.Text.ToString(),txt_cible.Text.ToString(),txt_sauvegarde.Text.ToString(),txt_chiffre.Text.ToString());
+            ajouter.Create(text_box_nom.Text.ToString(),txt_source.Text.ToString(),txt_cible.Text.ToString(),txt_sauvegarde.Text.ToString(),txt_chiffre.Text.ToString(), txt_priorite.Text.ToString());
             text_box_nom.Text = "";
             txt_source.Text = "";
             txt_cible.Text = "";
