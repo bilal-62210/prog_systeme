@@ -87,7 +87,7 @@ namespace appinterfacev2
             {
                 foreach (var data in table)
                 {
-                    items.Add(new Items { Nom = data.Nom, Sources = data.Sources, Cible = data.Cible, Types = data.Types, chiffrement = data.chiffrement });
+                    items.Add(new Items { Nom = data.Nom, Sources = data.Sources, Cible = data.Cible, Types = data.Types, chiffrement = data.chiffrement, prio = data.prio });
                 }
                 set.ItemsSource = items;
             }
@@ -303,7 +303,7 @@ namespace appinterfacev2
                     string sources = Source;
                     string cible = Target;
                     string chiffre = chiffres;
-                    string prioritee = priorite;
+                    var prioritee = priorite;
                   
                     if (Type == "complet" | Type == "Complet")
                     {
@@ -319,7 +319,19 @@ namespace appinterfacev2
                         {
                             var fileName = System.IO.Path.GetFileName(F);
                             var destFile = System.IO.Path.Combine(Target, fileName);
-                            System.IO.File.Copy(F, destFile, true);
+                            var test = System.IO.Path.GetFileNameWithoutExtension(F);
+                            string tab = prioritee;
+                            if(prioritee!=null)
+                            {
+                                foreach (string C in Files.Where(x => fileName == test + prioritee))
+                                {
+                                    System.IO.File.Copy(C, destFile, true);
+                                }
+                            }
+                            else
+                            {
+                               System.IO.File.Copy(F, destFile, true);
+                            }
                             TotalSize += F.Length;
                         }
                         int Size = TotalSize;
@@ -344,7 +356,6 @@ namespace appinterfacev2
 
                                 var fileName = System.IO.Path.GetFileName(s);
                                 var destFile = System.IO.Path.Combine(Target, fileName);
-                                System.IO.File.Copy(s, destFile, true);
                                 if (FileToDo == 0)
                                 {
                                     Source = "";
@@ -410,7 +421,6 @@ namespace appinterfacev2
                                         // Use static Path methods to extract only the file name from the path.
                                         var fileName = System.IO.Path.GetFileName(s);
                                         var destFile = System.IO.Path.Combine(Target, fileName);
-                                        System.IO.File.Copy(s, destFile, true);
                                         //Progression = (((TotalFiles - FileToDo) / TotalFiles) * 100);
                                         if (FileToDo == 0)
                                         {
@@ -455,6 +465,13 @@ namespace appinterfacev2
                 acceuil_sauvegarde gel = new acceuil_sauvegarde();
                 Thread.Sleep(2000);
                 gel.freeze();
+            }
+        }
+        public void prioritaire(string extension)
+        {
+            if(extension!="")
+            {
+              
             }
         }
         protected static string AskForJsonFileName(string JsonPath)

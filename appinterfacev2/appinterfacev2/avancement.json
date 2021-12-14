@@ -20,7 +20,17 @@
     "NbFilesLeftToDo": null
   },
   {
-    "Name": "save3",
+    "Name": null,
+    "Source": null,
+    "Target": null,
+    "State": null,
+    "progression": null,
+    "TotalFilesToCopy": null,
+    "TotalFilesSize": null,
+    "NbFilesLeftToDo": null
+  },
+  {
+    "Name": "save4",
     "Source": "",
     "Target": "",
     "State": "END",

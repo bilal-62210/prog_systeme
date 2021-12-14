@@ -22,6 +22,7 @@
                 <DataGridTextColumn Header="Target" Binding="{Binding Path=Cible}" Width="Auto"/>
                 <DataGridTextColumn Header="Type" Binding="{Binding Path=Types}" Width="Auto"/>
                 <DataGridTextColumn Header="chiffrement" Binding="{Binding Path=chiffrement}" Width="Auto"/>
+                <DataGridTextColumn Header="prioritaire" Binding="{Binding Path=prio}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btn_ajouter" Content="" HorizontalAlignment="Left" Margin="135,522,0,0" VerticalAlignment="Top" Width="64" Click="btn_ajouter_Click"/>
