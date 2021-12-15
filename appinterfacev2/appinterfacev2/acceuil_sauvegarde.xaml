@@ -15,14 +15,45 @@
         <Label x:Name="label_cible" Content="" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" Width="153"/>
         <Label x:Name="label_type_sauvegarde" Content="" HorizontalAlignment="Left" Margin="14,281,0,0" VerticalAlignment="Top" Width="153"/>
         <TextBox x:Name="txt_sauvegarde" HorizontalAlignment="Left" Margin="179,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4D4D4"/>
-        <DataGrid x:Name="DataRead" Margin="320,29,31,99" AutoGenerateColumns="False" ItemsSource="{Binding Items}">
+        <DataGrid x:Name="DataRead" Margin="320,29,31,99" AutoGenerateColumns="False" ItemsSource="{Binding Items}" SelectionChanged="DataRead_SelectionChanged">
             <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name ="Play" Content="Play" Click="Click_Data_Play"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name ="Pause" Content="Pause" Click="Click_Data_Pause"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name ="Stop" Content="Stop" Click="Click_Data_Stop"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ProgressBar Value="{Binding Path=Progress, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" Width="150" Height="30"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Name" Binding="{Binding Path=Nom}" Width="Auto"/>
                 <DataGridTextColumn Header="Source" Binding="{Binding Path=Sources}" Width="Auto"/>
                 <DataGridTextColumn Header="Target" Binding="{Binding Path=Cible}" Width="Auto"/>
                 <DataGridTextColumn Header="Type" Binding="{Binding Path=Types}" Width="Auto"/>
                 <DataGridTextColumn Header="chiffrement" Binding="{Binding Path=chiffrement}" Width="Auto"/>
                 <DataGridTextColumn Header="prioritaire" Binding="{Binding Path=prio}" Width="Auto"/>
+                <DataGridTextColumn Header="Format" Binding="{Binding Path=log}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btn_ajouter" Content="" HorizontalAlignment="Left" Margin="135,522,0,0" VerticalAlignment="Top" Width="64" Click="btn_ajouter_Click"/>

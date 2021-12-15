@@ -5,30 +5,7 @@
     "Cible": "C:\\fin",
     "Types": "complet",
     "chiffrement": "*.txt *.pdf",
-    "prio": ".txt"
-  },
-  {
-    "Nom": "save2",
-    "Sources": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\stage",
-    "Cible": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\fin",
-    "Types": "complet",
-    "chiffrement": ".doc",
-    "prio": null
-  },
-  {
-    "Nom": "save3",
-    "Sources": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\Poppy",
-    "Cible": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\fin",
-    "Types": "complet",
-    "chiffrement": ".doc",
-    "prio": null
-  },
-  {
-    "Nom": "save4",
-    "Sources": "C:\\debut",
-    "Cible": "C:\\fin",
-    "Types": "complet",
-    "chiffrement": "*.txt",
-    "prio": ".pdf"
+    "prio": ".txt",
+    "log": "json"
   }
 ]

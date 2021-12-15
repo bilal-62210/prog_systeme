@@ -1,36 +1,6 @@
 [
   {
-    "Name": null,
-    "Source": null,
-    "Target": null,
-    "State": null,
-    "progression": null,
-    "TotalFilesToCopy": null,
-    "TotalFilesSize": null,
-    "NbFilesLeftToDo": null
-  },
-  {
-    "Name": null,
-    "Source": null,
-    "Target": null,
-    "State": null,
-    "progression": null,
-    "TotalFilesToCopy": null,
-    "TotalFilesSize": null,
-    "NbFilesLeftToDo": null
-  },
-  {
-    "Name": null,
-    "Source": null,
-    "Target": null,
-    "State": null,
-    "progression": null,
-    "TotalFilesToCopy": null,
-    "TotalFilesSize": null,
-    "NbFilesLeftToDo": null
-  },
-  {
-    "Name": "save4",
+    "Name": "save1",
     "Source": "",
     "Target": "",
     "State": "END",

@@ -11,6 +11,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
 using System.Diagnostics;
+using System.ComponentModel;
+using System.Drawing;
+using System.Linq;
 
 namespace appinterfacev2
 {
@@ -102,12 +105,14 @@ namespace appinterfacev2
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
         {
             model ajouter = new model();
-            ajouter.Create(text_box_nom.Text.ToString(),txt_source.Text.ToString(),txt_cible.Text.ToString(),txt_sauvegarde.Text.ToString(),txt_chiffre.Text.ToString(), txt_priorite.Text.ToString());
+            ajouter.Create(text_box_nom.Text.ToString(),txt_source.Text.ToString(),txt_cible.Text.ToString(),txt_sauvegarde.Text.ToString(),txt_chiffre.Text.ToString(), txt_priorite.Text.ToString(), journalier.Text.ToString());
             text_box_nom.Text = "";
             txt_source.Text = "";
             txt_cible.Text = "";
             txt_sauvegarde.Text = "";
             txt_chiffre.Text = "";
+            txt_priorite.Text = "";
+            journalier.Text = "";
         }
 
         private void btn_supprimer_Click(object sender, RoutedEventArgs e)
@@ -127,21 +132,23 @@ namespace appinterfacev2
 
         private void btn_sequentiel_Click(object sender, RoutedEventArgs e)
         {
-            freeze();
+           /* freeze();
             model sequentiel = new model();
-            sequentiel.SequentialSave();
+            sequentiel.SequentialSave();*/
                  
         }
 
         private void btn_modify_Click(object sender, RoutedEventArgs e)
         {
             model modifier = new model();
-            modifier.Modify(text_box_nom.Text,txt_source.Text,txt_cible.Text,txt_sauvegarde.Text,txt_chiffre.Text);
+            modifier.Modify(text_box_nom.Text,txt_source.Text,txt_cible.Text,txt_sauvegarde.Text,txt_chiffre.Text, txt_priorite.Text, journalier.Text);
             text_box_nom.Text = "";
             txt_source.Text = "";
             txt_cible.Text = "";
             txt_sauvegarde.Text = "";
             txt_chiffre.Text = "";
+            txt_priorite.Text = "";
+            journalier.Text = "";
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -162,5 +169,23 @@ namespace appinterfacev2
         }
 
         private void txt_priorite_TextChanged(object sender, TextChangedEventArgs e){}
+        private void Click_Data_Play(object sender, RoutedEventArgs e)
+        {
+            //model.Play();
+            model c = new model();
+            c.Save(text_box_nom.Text);
+        }
+        private void Click_Data_Pause(object sender, RoutedEventArgs e)
+        {
+           // model.Pause();
+        }
+        private void Click_Data_Stop(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DataRead_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
     }
 }

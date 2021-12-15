@@ -21,6 +21,7 @@ using System.Data;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Xml.Serialization;
+using System.ComponentModel;
 
 
 namespace appinterfacev2
@@ -59,8 +60,10 @@ namespace appinterfacev2
         public string Type;
         public string chiffres;
         public string priorite;
+        public string Log;
         public static DataGrid set = new DataGrid();
         public static ComboBox extent = new ComboBox();
+        public static ProgressBar bar = new ProgressBar();
         string pathJournalierXML = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\log.xml";
         string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\save1.json";
         string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\journalier.json";
@@ -87,7 +90,7 @@ namespace appinterfacev2
             {
                 foreach (var data in table)
                 {
-                    items.Add(new Items { Nom = data.Nom, Sources = data.Sources, Cible = data.Cible, Types = data.Types, chiffrement = data.chiffrement, prio = data.prio });
+                    items.Add(new Items { Nom = data.Nom, Sources = data.Sources, Cible = data.Cible, Types = data.Types, chiffrement = data.chiffrement, prio = data.prio, log=data.log});
                 }
                 set.ItemsSource = items;
             }
@@ -97,7 +100,7 @@ namespace appinterfacev2
             }
         }
         //methode permettant de créer les travaux
-        public void Create(string NameSave, string SourceSave, string TargetSave, string TypeSave, string chiffre, string priorites)
+        public void Create(string NameSave, string SourceSave, string TargetSave, string TypeSave, string chiffre, string priorites, string logue)
         {
             var result = false;
             Name = NameSave;
@@ -106,13 +109,15 @@ namespace appinterfacev2
             Type = TypeSave;
             chiffres = chiffre;
             priorite = priorites;
+            Log = logue;
+
                 AskForJsonFileName(jsonpath);
                 var jsondata = File.ReadAllText(jsonpath);
                 var list = JsonConvert.DeserializeObject<List<data>>(jsondata);
                 AskForJsonFileName(pathAvancement);
 
                 var jsondata2 = File.ReadAllText(pathAvancement);
-                var list2 = JsonConvert.DeserializeObject<List<log_avancement>>(jsondata);
+                var list2 = JsonConvert.DeserializeObject<List<log_avancement>>(jsondata2);
 
             data Save = new data
             {
@@ -122,6 +127,7 @@ namespace appinterfacev2
                 Types = TypeSave,
                 chiffrement = chiffre,
                 prio = priorites,
+                log = logue,
                 };
 
                 log_avancement avance = new log_avancement
@@ -163,6 +169,7 @@ namespace appinterfacev2
                         data.Types = TypeSave;
                         data.chiffrement = chiffre;
                         data.prio = priorites;
+                        data.log = logue;
                         jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
                         File.WriteAllText(jsonpath, jsondata);
                         if (data.Nom == NameSave)
@@ -197,7 +204,7 @@ namespace appinterfacev2
             
         }
         //methode permettant de modifier les travaux
-        public void Modify(string nom_save, string source, string cible, string type, string chiffre)
+        public void Modify(string nom_save, string source, string cible, string type, string chiffre, string priorites, string logue)
         {
             string json = File.ReadAllText(jsonpath);
             var Data = JsonConvert.DeserializeObject<List<data>>(json);
@@ -245,6 +252,24 @@ namespace appinterfacev2
                     string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
                     File.WriteAllText(jsonpath, output);
                 }
+                if (priorites != "")
+                {
+                    var modif = priorites;
+
+                    data.prio = modif;
+
+                    string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
+                    File.WriteAllText(jsonpath, output);
+                }
+                if (logue != "")
+                {
+                    var modif = logue;
+
+                    data.log = modif;
+
+                    string output = JsonConvert.SerializeObject(Data, Formatting.Indented);
+                    File.WriteAllText(jsonpath, output);
+                }
             }
         }
         //methode permettant de supprimer les travaux
@@ -267,6 +292,8 @@ namespace appinterfacev2
                 data.Types = null;
                 data.Nom = null;
                 data.chiffrement = null;
+                data.log = null;
+                data.prio = null;
             }
             jsonText = JsonConvert.SerializeObject(Data, Formatting.Indented);
             File.WriteAllText(jsonpath, jsonText);
@@ -320,18 +347,17 @@ namespace appinterfacev2
                             var fileName = System.IO.Path.GetFileName(F);
                             var destFile = System.IO.Path.Combine(Target, fileName);
                             var test = System.IO.Path.GetFileNameWithoutExtension(F);
-                            string tab = prioritee;
+                            //string tab = prioritee;
                             if(prioritee!=null)
                             {
                                 foreach (string C in Files.Where(x => fileName == test + prioritee))
                                 {
                                     System.IO.File.Copy(C, destFile, true);
+
                                 }
                             }
-                            else
-                            {
-                               System.IO.File.Copy(F, destFile, true);
-                            }
+                            System.IO.File.Copy(F, destFile, true);
+                            
                             TotalSize += F.Length;
                         }
                         int Size = TotalSize;
@@ -341,7 +367,7 @@ namespace appinterfacev2
                         int FileToDo = TotalFiles;
                         sw.Stop();
                         TimeSpan Timer = sw.Elapsed;
-                        Journalier(Name, source, target, Size, Timer);
+                        Journalier(Name, source, target, Size, Timer, chiffre, prioritee);
                         content();
                         p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
                         string str = sources.ToString() + " " + cible.ToString() + " " + chiffre.ToString();
@@ -352,6 +378,9 @@ namespace appinterfacev2
                         {
                             for (int i = 0; i < TotalFiles; i++)
                             {
+                                var items = new ObservableCollection<Items>();
+                                items.Add(new Items() { Progress = (((TotalFiles - FileToDo) * TotalFiles) / 100) });
+                                set.ItemsSource = items;
                                 FileToDo--;
 
                                 var fileName = System.IO.Path.GetFileName(s);
@@ -391,9 +420,20 @@ namespace appinterfacev2
                                 // Use static Path methods to extract only the file name from the path.
                                 var fileName = System.IO.Path.GetFileName(f);
                                 var destFile = System.IO.Path.Combine(Target, fileName);
-                                System.IO.File.Copy(f, destFile, true);
+                                var test = System.IO.Path.GetFileNameWithoutExtension(f);
                                 if (f.Length != F.Length)
                                 {
+                                    if (prioritee != null)
+                                    {
+                                        foreach (string C in Files.Where(x => fileName == test + prioritee))
+                                        {
+                                            System.IO.File.Copy(C, destFile, true);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        System.IO.File.Copy(f, destFile, true);
+                                    }
                                     TotalSize += f.Length - F.Length;
                                     TotalFiles += 1;
                                 }
@@ -440,7 +480,7 @@ namespace appinterfacev2
                         }
                         sw.Stop();
                         TimeSpan Timer = sw.Elapsed;
-                        Journalier(Name, source, target, Size, Timer);
+                        Journalier(Name, source, target, Size, Timer, chiffre, prioritee);
                     }
                 }
                 else
@@ -454,7 +494,7 @@ namespace appinterfacev2
             }
         }
         //methode permettant d'executer séquentiellement les travaux
-        public void SequentialSave()
+        /*public void SequentialSave()
         {
             var jsonText = File.ReadAllText(jsonpath);
             var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
@@ -466,14 +506,7 @@ namespace appinterfacev2
                 Thread.Sleep(2000);
                 gel.freeze();
             }
-        }
-        public void prioritaire(string extension)
-        {
-            if(extension!="")
-            {
-              
-            }
-        }
+        }*/
         protected static string AskForJsonFileName(string JsonPath)
         {
             BEGIN:
@@ -487,82 +520,97 @@ namespace appinterfacev2
                 goto BEGIN;
             }
         }
-        protected void Journalier(string NameSave, string SourceSave, string TargetSave, int SizeSave, TimeSpan TransfertSave)
+        protected void Journalier(string NameSave, string SourceSave, string TargetSave, int SizeSave, TimeSpan TransfertSave,string extension, string priorites)
         {
-            //strucuture log_journalier
-            log_journalier Save = new log_journalier
+            var json = File.ReadAllText(jsonpath);
+            var List = JsonConvert.DeserializeObject<List<data>>(json);
+
+            foreach (var data in List.Where(x => x.Nom == NameSave))
             {
-                Nom = NameSave,
-                Sources = SourceSave,
-                Cible = TargetSave,
-                size = SizeSave.ToString(),
-                filetransfertime = TransfertSave.ToString(),
-                time = DateTime.Now
-            };
-
-            var choix = extent.Text;
-
-            if (choix == "json")
-            {
-                var jsondata = File.ReadAllText(pathjournalier);
-                var list = JsonConvert.DeserializeObject<List<log_journalier>>(jsondata);
-
-                //si le log journalier est vide
-                if (list == null)
+                //strucuture log_journalier
+                log_journalier Save = new log_journalier
                 {
-                    jsondata = "[" + JsonConvert.SerializeObject(Save, Formatting.Indented) + "]";
-                    File.WriteAllText(pathjournalier, jsondata);
-                }
+                    Nom = NameSave,
+                    Sources = SourceSave,
+                    chiffrement = extension,
+                    prio = priorites,
+                    Cible = TargetSave,
+                    size = SizeSave.ToString(),
+                    filetransfertime = TransfertSave.ToString(),
+                    time = DateTime.Now,
+                    encrypttime = "0"
+                };
 
-                //si le log journalier est non vide
-                else
-                {
-                    list.Add(Save);
-                    jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
-                    File.WriteAllText(pathjournalier, jsondata);
-                }
-            }
-            if (choix == "xml")
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(log_journalier));
 
-                try
+
+                if (data.log == "json")
                 {
-                    FileStream stream = File.OpenWrite(pathJournalierXML);
-                    serializer.Serialize(stream, new log_journalier()
+                    var jsondata = File.ReadAllText(pathjournalier);
+                    var list = JsonConvert.DeserializeObject<List<log_journalier>>(jsondata);
+
+                    //si le log journalier est vide
+                    if (list == null)
                     {
-                        Nom = NameSave,
-                        Sources = SourceSave,
-                        Cible = TargetSave,
-                        size = SizeSave.ToString(),
-                        filetransfertime = TransfertSave.ToString(),
-                        time = DateTime.Now
-                    });
+                        jsondata = "[" + JsonConvert.SerializeObject(Save, Formatting.Indented) + "]";
+                        File.WriteAllText(pathjournalier, jsondata);
+                    }
 
-                    stream.Dispose();
-
-                    FileStream streamread = File.OpenRead(pathJournalierXML);
-
-                    var result = (log_journalier)(serializer.Deserialize(streamread));
-                }
-                catch
-                {
-                    FileStream stream = File.OpenWrite(pathJournalierXML);
-                    serializer.Serialize(stream, new log_journalier()
+                    //si le log journalier est non vide
+                    else
                     {
-                        Nom = NameSave,
-                        Sources = SourceSave,
-                        Cible = TargetSave,
-                        size = SizeSave.ToString(),
-                        filetransfertime = TransfertSave.ToString(),
-                        time = DateTime.Now
-                    });
+                        list.Add(Save);
+                        jsondata = JsonConvert.SerializeObject(list, Formatting.Indented);
+                        File.WriteAllText(pathjournalier, jsondata);
+                    }
+                }
+                if (data.log == "xml")
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(log_journalier));
 
-                    stream.Dispose();
+                    try
+                    {
+                        FileStream stream = File.OpenWrite(pathJournalierXML);
+                        serializer.Serialize(stream, new log_journalier()
+                        {
+                            Nom = NameSave,
+                            Sources = SourceSave,
+                            chiffrement = extension,
+                            prio = priorites,
+                            Cible = TargetSave,
+                            size = SizeSave.ToString(),
+                            filetransfertime = TransfertSave.ToString(),
+                            time = DateTime.Now,
+                            encrypttime = "0"
+                        });
 
-                    FileStream streamread = File.OpenRead(pathJournalierXML);
+                        stream.Dispose();
 
-                    var result = (log_journalier)(serializer.Deserialize(streamread));
+                        FileStream streamread = File.OpenRead(pathJournalierXML);
+
+                        var result = (log_journalier)(serializer.Deserialize(streamread));
+                    }
+                    catch
+                    {
+                        FileStream stream = File.OpenWrite(pathJournalierXML);
+                        serializer.Serialize(stream, new log_journalier()
+                        {
+                            Nom = NameSave,
+                            Sources = SourceSave,
+                            chiffrement = extension,
+                            prio = priorites,
+                            Cible = TargetSave,
+                            size = SizeSave.ToString(),
+                            filetransfertime = TransfertSave.ToString(),
+                            time = DateTime.Now,
+                            encrypttime = "0"
+                        });
+
+                        stream.Dispose();
+
+                        FileStream streamread = File.OpenRead(pathJournalierXML);
+
+                        var result = (log_journalier)(serializer.Deserialize(streamread));
+                    }
                 }
             }
         }
@@ -602,9 +650,13 @@ namespace appinterfacev2
             public string Types { get; set; }
             public string chiffrement { get; set; }
             public string prio { get; set; }
+            public string log { get; set; }
 
         }
-        class Items : data { }
+        class Items : data 
+        {
+            public int Progress { get; set; }
+        }
         class log_avancement
         {
             public string Name { get; set; }
@@ -626,6 +678,9 @@ namespace appinterfacev2
         public string size { get; set; }
         public string filetransfertime { get; set; }
         public DateTime time { get; set; }
+        public string chiffrement { get; set; }
+        public string prio { get; set; }
+        public string encrypttime { get; set; }
 
     }
 }
