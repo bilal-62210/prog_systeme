@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Diagnostics;
+
 
 namespace appinterfacev2
 {
@@ -22,6 +25,7 @@ namespace appinterfacev2
     {
         public MainWindow()
         {
+            Application_Startup();
             InitializeComponent();
             
         }
@@ -49,6 +53,20 @@ namespace appinterfacev2
             else
             {
                 MessageBox.Show("Veuillez selectionner votre langue/Please choose your langage");
+            }
+        }
+        private void Application_Startup()
+        {
+            Process proc = Process.GetCurrentProcess();
+            //check other process with same name
+            int count = Process.GetProcesses().Where(p =>
+                p.ProcessName == proc.ProcessName).Count();
+
+            if (count > 1)
+            {
+                MessageBox.Show("Already an instance is running...");
+                //shutdown new instance
+                App.Current.Shutdown();
             }
         }
     }

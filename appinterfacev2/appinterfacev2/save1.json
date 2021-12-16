@@ -7,5 +7,14 @@
     "chiffrement": "*.txt *.pdf",
     "prio": ".txt",
     "log": "json"
+  },
+  {
+    "Nom": "save2",
+    "Sources": "C:\\Users\\bbila\\OneDrive\\Jibril",
+    "Cible": "c:\\fin2",
+    "Types": "complet",
+    "chiffrement": "*.txt",
+    "prio": ".txt",
+    "log": "json"
   }
 ]

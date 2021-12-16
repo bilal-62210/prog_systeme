@@ -65,10 +65,10 @@ namespace appinterfacev2
         public static DataGrid set = new DataGrid();
         public static ComboBox extent = new ComboBox();
         public static ProgressBar bar = new ProgressBar();
-        string pathJournalierXML = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\log.xml";
-        string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\save1.json";
-        string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\journalier.json";
-        string pathAvancement = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\avancement.json";
+        string pathJournalierXML = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\log.xml";
+        string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\save1.json";
+        string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\journalier.json";
+        string pathAvancement = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\avancement.json";
         public void pascontent()
         {
             string pascontent = char.ConvertFromUtf32(0x1F624);
@@ -83,7 +83,7 @@ namespace appinterfacev2
         //methode permettant de lire les json
         public void Read()
         {
-            StreamReader r = new StreamReader(@"C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\save1.json");
+            StreamReader r = new StreamReader(@"C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\save1.json");
             string json = r.ReadToEnd();
             List<data> table = JsonConvert.DeserializeObject<List<data>>(json);
             List<Items> items = new List<Items>();
@@ -378,18 +378,6 @@ namespace appinterfacev2
                         {
                             for (int i = 0; i < TotalFiles; i++)
                             {
-                                /*try
-                                {
-                                    var items = new ObservableCollection<Items>();
-                                    items.Add(new Items() { Progress = (((TotalFiles - FileToDo) * TotalFiles) / 100) });
-                                    set.ItemsSource = items;
-
-                                    FileToDo--;
-                                }
-                                catch
-                                {
-                                    FileToDo--;
-                                }*/
                                 FileToDo--;
                                 // quand on a plus de fichiers à copier, on met tout à zéro
                                 if (FileToDo == 0)
@@ -404,25 +392,29 @@ namespace appinterfacev2
                                     avancement(Name, Source, Target, state, TotalFiles, TotalSize, FileToDo, Progression);
                                 }
                                 avancement(Name, Source, Target, state, TotalFiles, TotalSize, FileToDo, Progression);
-                               // MessageBox.Show(FileToDo.ToString());
+                                // MessageBox.Show(FileToDo.ToString());
                             }
                         }
                         //MessageBox.Show("save terminé");
+                        Stopwatch stopwatch = new Stopwatch();
+                        stopwatch.Start();
                         Process p = new Process();
-                        p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
+                        p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git_v2\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
                         string str = source.ToString() + " " + target.ToString() + " " + chiffre.ToString();
                         p.StartInfo.Arguments = str;
                         p.Start();
                         p.WaitForExit();
+                        stopwatch.Stop();
                         //fin timer
                         sw.Stop();
                         //MessageBox.Show("encrypt terminé");
                         TimeSpan Timer = sw.Elapsed;
+                        TimeSpan temps = stopwatch.Elapsed;
                         try
                         {
-                            Journalier(Name, source, target, Size, Timer, priorite, chiffres);
+                            Journalier(Name, source, target, Size, Timer, priorite, chiffres, temps);
 
-                           // MessageBox.Show("journalier  terminé");
+                            // MessageBox.Show("journalier  terminé");
                         }
                         catch
                         {
@@ -503,15 +495,19 @@ namespace appinterfacev2
                                 }
                             }
                         }
+                        Stopwatch stopwatch = new Stopwatch();
+                        stopwatch.Start();
                         Process p = new Process();
-                        p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
+                        p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git_v2\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
                         string str = source.ToString() + " " + target.ToString() + " " + chiffre.ToString();
                         p.StartInfo.Arguments = str;
                         p.Start();
                         p.WaitForExit();
+                        stopwatch.Stop();
                         sw.Stop();
                         TimeSpan Timer = sw.Elapsed;
-                        Journalier(Name, source, target, Size, Timer, priorite, chiffre);
+                        TimeSpan temps = stopwatch.Elapsed;
+                        Journalier(Name, source, target, Size, Timer, priorite, chiffre, temps);
                         content();
                     }
                 }
@@ -549,7 +545,7 @@ namespace appinterfacev2
                 goto BEGIN;
             }
         }
-        protected void Journalier(string NameSave, string SourceSave, string TargetSave, int SizeSave, TimeSpan TransfertSave,string extension, string priorites)
+        protected void Journalier(string NameSave, string SourceSave, string TargetSave, int SizeSave, TimeSpan TransfertSave, string extension, string priorites, TimeSpan encrypt)
         {
             var json = File.ReadAllText(jsonpath);
             var List = JsonConvert.DeserializeObject<List<data>>(json);
@@ -567,7 +563,7 @@ namespace appinterfacev2
                     size = SizeSave.ToString(),
                     filetransfertime = TransfertSave.ToString(),
                     time = DateTime.Now,
-                    encrypttime = "0"
+                    encrypttime = encrypt.ToString()
                 };
 
 
@@ -609,7 +605,7 @@ namespace appinterfacev2
                             size = SizeSave.ToString(),
                             filetransfertime = TransfertSave.ToString(),
                             time = DateTime.Now,
-                            encrypttime = "0"
+                            encrypttime = encrypt.ToString()
                         });
 
                         stream.Dispose();
@@ -631,7 +627,7 @@ namespace appinterfacev2
                             size = SizeSave.ToString(),
                             filetransfertime = TransfertSave.ToString(),
                             time = DateTime.Now,
-                            encrypttime = "0"
+                            encrypttime = encrypt.ToString()
                         });
 
                         stream.Dispose();
@@ -682,7 +678,7 @@ namespace appinterfacev2
             public string log { get; set; }
 
         }
-        class Items : data 
+        class Items : data
         {
             public int Progress { get; set; }
         }

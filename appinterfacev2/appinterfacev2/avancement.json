@@ -8,5 +8,15 @@
     "TotalFilesToCopy": "0",
     "TotalFilesSize": "0",
     "NbFilesLeftToDo": "0"
+  },
+  {
+    "Name": "save2",
+    "Source": "",
+    "Target": "",
+    "State": "END",
+    "progression": "0",
+    "TotalFilesToCopy": "0",
+    "TotalFilesSize": "0",
+    "NbFilesLeftToDo": "0"
   }
 ]

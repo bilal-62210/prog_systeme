@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\appinterfacev2\\appinterfacev2",
+    "\\app_cryptosoft",
+    "\\app_cryptosoft\\app_cryptosoft"
   ],
+  "SelectedNode": "\\app_cryptosoft\\app_cryptosoft\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
