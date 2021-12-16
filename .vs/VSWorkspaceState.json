@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\appinterfacev2",
-    "\\appinterfacev2\\appinterfacev2"
+    "\\appinterfacev2\\appinterfacev2",
+    "\\app_cryptosoft",
+    "\\app_cryptosoft\\app_cryptosoft"
   ],
-  "SelectedNode": "\\appinterfacev2\\appinterfacev2\\acceuil_sauvegarde.xaml.cs",
+  "SelectedNode": "\\app_cryptosoft\\app_cryptosoft\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -922,5 +922,16 @@
     "chiffrement": ".txt",
     "prio": "*.txt *.pdf",
     "encrypttime": "0"
+  },
+  {
+    "Nom": "save1",
+    "Sources": "C:\\debut",
+    "Cible": "C:\\fin",
+    "size": "4599",
+    "filetransfertime": "00:00:21.9813585",
+    "time": "2021-12-16T15:08:22.5024866+01:00",
+    "chiffrement": ".txt",
+    "prio": "*.txt *.pdf",
+    "encrypttime": "00:00:01.3663118"
   }
 ]
