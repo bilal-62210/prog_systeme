@@ -173,7 +173,7 @@ namespace appinterfacev2
         {
             //model.Play();
             model c = new model();
-            c.Save(text_box_nom.Text);
+            c.play();
         }
         private void Click_Data_Pause(object sender, RoutedEventArgs e)
         {
