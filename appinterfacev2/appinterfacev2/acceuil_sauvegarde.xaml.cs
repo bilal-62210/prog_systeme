@@ -32,7 +32,7 @@ namespace appinterfacev2
         public void langue()
         {
             string path = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\langue.json";
-            string search = MainWindow.choix+".Save.Name";
+            string search = MainWindow.choix + ".Save.Name";
             string search1 = MainWindow.choix + ".Save.Source";
             string search2 = MainWindow.choix + ".Save.Target";
             string search3 = MainWindow.choix + ".Save.Type";
@@ -45,7 +45,7 @@ namespace appinterfacev2
             string search10 = MainWindow.choix + ".Interface.Sequential";
             string search12 = MainWindow.choix + ".Interface.Retour";
             string search13 = MainWindow.choix + ".Save.Priorite";
-            string search14 = MainWindow.choix + ".Save.Format"; 
+            string search14 = MainWindow.choix + ".Save.Format";
             // to make one time at start of code to declare method and delegate
             var js = new model();
             del_JSON del_js = new del_JSON(js.ExeJS);
@@ -54,16 +54,16 @@ namespace appinterfacev2
             label_source.Content = del_js.Invoke(path, search1);
             label_cible.Content = del_js.Invoke(path, search2);
             label_type_sauvegarde.Content = del_js.Invoke(path, search3);
-            label_chiffre.Content= del_js.Invoke(path, search4);
-            btn_ajouter.Content= del_js.Invoke(path, search5);
-            btn_modify.Content= del_js.Invoke(path, search6);
-            btn_supprimer.Content= del_js.Invoke(path, search7);
-            btn_lire.Content= del_js.Invoke(path, search8);
-            btn_executer.Content= del_js.Invoke(path, search9);
-            btn_sequentiel.Content= del_js.Invoke(path, search10);
-            btn_retour.Content= del_js.Invoke(path, search12);
-            label_priorite.Content= del_js.Invoke(path, search13);
-            label_journalier.Content= del_js.Invoke(path, search14);
+            label_chiffre.Content = del_js.Invoke(path, search4);
+            btn_ajouter.Content = del_js.Invoke(path, search5);
+            btn_modify.Content = del_js.Invoke(path, search6);
+            btn_supprimer.Content = del_js.Invoke(path, search7);
+            btn_lire.Content = del_js.Invoke(path, search8);
+            btn_executer.Content = del_js.Invoke(path, search9);
+            btn_sequentiel.Content = del_js.Invoke(path, search10);
+            btn_retour.Content = del_js.Invoke(path, search12);
+            label_priorite.Content = del_js.Invoke(path, search13);
+            label_journalier.Content = del_js.Invoke(path, search14);
         }
         public void freeze()
         {
@@ -105,7 +105,7 @@ namespace appinterfacev2
         private void btn_ajouter_Click(object sender, RoutedEventArgs e)
         {
             model ajouter = new model();
-            ajouter.Create(text_box_nom.Text.ToString(),txt_source.Text.ToString(),txt_cible.Text.ToString(),txt_sauvegarde.Text.ToString(),txt_chiffre.Text.ToString(), txt_priorite.Text.ToString(), journalier.Text.ToString());
+            ajouter.Create(text_box_nom.Text.ToString(), txt_source.Text.ToString(), txt_cible.Text.ToString(), txt_sauvegarde.Text.ToString(), txt_chiffre.Text.ToString(), txt_priorite.Text.ToString(), journalier.Text.ToString());
             text_box_nom.Text = "";
             txt_source.Text = "";
             txt_cible.Text = "";
@@ -132,16 +132,16 @@ namespace appinterfacev2
 
         private void btn_sequentiel_Click(object sender, RoutedEventArgs e)
         {
-           /* freeze();
-            model sequentiel = new model();
-            sequentiel.SequentialSave();*/
-                 
+            /* freeze();
+             model sequentiel = new model();
+             sequentiel.SequentialSave();*/
+
         }
 
         private void btn_modify_Click(object sender, RoutedEventArgs e)
         {
             model modifier = new model();
-            modifier.Modify(text_box_nom.Text,txt_source.Text,txt_cible.Text,txt_sauvegarde.Text,txt_chiffre.Text, txt_priorite.Text, journalier.Text);
+            modifier.Modify(text_box_nom.Text, txt_source.Text, txt_cible.Text, txt_sauvegarde.Text, txt_chiffre.Text, txt_priorite.Text, journalier.Text);
             text_box_nom.Text = "";
             txt_source.Text = "";
             txt_cible.Text = "";
@@ -168,16 +168,17 @@ namespace appinterfacev2
 
         }
 
-        private void txt_priorite_TextChanged(object sender, TextChangedEventArgs e){}
+        private void txt_priorite_TextChanged(object sender, TextChangedEventArgs e) { }
         private void Click_Data_Play(object sender, RoutedEventArgs e)
         {
             //model.Play();
             model c = new model();
             c.play();
+            freeze();
         }
         private void Click_Data_Pause(object sender, RoutedEventArgs e)
         {
-           // model.Pause();
+            // model.Pause();
         }
         private void Click_Data_Stop(object sender, RoutedEventArgs e)
         {

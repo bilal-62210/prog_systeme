@@ -38,15 +38,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <ProgressBar Value="{Binding Path=Progress, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" Width="150" Height="30"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Name" Binding="{Binding Path=Nom}" Width="Auto"/>
                 <DataGridTextColumn Header="Source" Binding="{Binding Path=Sources}" Width="Auto"/>
                 <DataGridTextColumn Header="Target" Binding="{Binding Path=Cible}" Width="Auto"/>

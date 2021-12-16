@@ -378,18 +378,6 @@ namespace appinterfacev2
                         {
                             for (int i = 0; i < TotalFiles; i++)
                             {
-                                /*try
-                                {
-                                    var items = new ObservableCollection<Items>();
-                                    items.Add(new Items() { Progress = (((TotalFiles - FileToDo) * TotalFiles) / 100) });
-                                    set.ItemsSource = items;
-
-                                    FileToDo--;
-                                }
-                                catch
-                                {
-                                    FileToDo--;
-                                }*/
                                 FileToDo--;
                                 // quand on a plus de fichiers à copier, on met tout à zéro
                                 if (FileToDo == 0)
@@ -404,7 +392,7 @@ namespace appinterfacev2
                                     avancement(Name, Source, Target, state, TotalFiles, TotalSize, FileToDo, Progression);
                                 }
                                 avancement(Name, Source, Target, state, TotalFiles, TotalSize, FileToDo, Progression);
-                               // MessageBox.Show(FileToDo.ToString());
+                                // MessageBox.Show(FileToDo.ToString());
                             }
                         }
                         //MessageBox.Show("save terminé");
@@ -426,7 +414,7 @@ namespace appinterfacev2
                         {
                             Journalier(Name, source, target, Size, Timer, priorite, chiffres, temps);
 
-                           // MessageBox.Show("journalier  terminé");
+                            // MessageBox.Show("journalier  terminé");
                         }
                         catch
                         {
@@ -519,7 +507,7 @@ namespace appinterfacev2
                         sw.Stop();
                         TimeSpan Timer = sw.Elapsed;
                         TimeSpan temps = stopwatch.Elapsed;
-                        Journalier(Name, source, target, Size, Timer, priorite, chiffre,temps);
+                        Journalier(Name, source, target, Size, Timer, priorite, chiffre, temps);
                         content();
                     }
                 }
@@ -557,7 +545,7 @@ namespace appinterfacev2
                 goto BEGIN;
             }
         }
-        protected void Journalier(string NameSave, string SourceSave, string TargetSave, int SizeSave, TimeSpan TransfertSave,string extension, string priorites, TimeSpan encrypt)
+        protected void Journalier(string NameSave, string SourceSave, string TargetSave, int SizeSave, TimeSpan TransfertSave, string extension, string priorites, TimeSpan encrypt)
         {
             var json = File.ReadAllText(jsonpath);
             var List = JsonConvert.DeserializeObject<List<data>>(json);
@@ -690,7 +678,7 @@ namespace appinterfacev2
             public string log { get; set; }
 
         }
-        class Items : data 
+        class Items : data
         {
             public int Progress { get; set; }
         }
