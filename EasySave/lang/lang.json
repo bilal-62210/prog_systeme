@@ -1,0 +1,89 @@
+{
+  "FR": {
+    "Save": {
+      "Name": "Nom de la sauvegarde:",
+      "Source": "Source de la sauvegarde:",
+      "Target": "Cible de la sauvegarde:",
+      "Type": "Type de sauvegarde:",
+      "Chiffre":  "type de chiffrement:"
+    },
+    "Interface": {
+      "take_choice": "Choisissez une option dans la liste suivante :",
+      "Add": "Ajouter",
+      "Modify": "Modifier",
+      "Delete": "Supprimer",
+      "Read": "Lire",
+      "Execute": "Executer sauvegarde",
+      "Sequential": "Sauvegarde sequentielle",
+      "Chiffrement":  "Chiffrer",
+      "Quit": "Quitter",
+      "Retour":  "retour",
+      "Option": "Votre option:",
+      "press_any_key": "Appuyer sur une touche pour fermer la console"
+    }
+  },
+  "EN": {
+    "Save": {
+      "Name": "Backup name:",
+      "Source": "Backup source",
+      "Target": "Backup target ",
+      "Type": "Backup type",
+      "Chiffre": "encryption type:"
+    },
+    "Interface": {
+      "take_choice": "Choose an option from the following list :",
+      "Add": "Add",
+      "Modify": "Modify",
+      "Delete": "Delete",
+      "Read": "Read",
+      "Execute": "run backup",
+      "Sequential": "Sequential backup",
+      "Chiffrement":  "Encrypt",
+      "Quit": "Quit",
+      "Retour": "back",
+      "Option": "Your option:",
+      "press_any_key": "Press any key to close the console app..."
+    }
+  },
+  "ES": {
+    "Save": {
+      "Name": "nombre de la copia de seguridad",
+      "Source": "Origen de la copia de seguridad",
+      "Target": "Destino de la copia de seguridad",
+      "type": "tipo de copia de seguridad"
+    },
+    "Interface": {
+      "take_choice": "Elija una opci�n de la siguiente lista:",
+      "Add": "Agregar",
+      "Modify": "Editar",
+      "Delete": "Borrar",
+      "Read": "leer",
+      "Execute": "Ejecutar copia de seguridad",
+      "Sequential": "Copia de seguridad secuencial",
+      "Quit": "Dejar",
+      "Option": "tu opci�n",
+      "press_any_key": "Presione un bot�n para cerrar la consola..."
+    }
+  },
+  "HT": {
+    "Save": {
+      "Name": "Sovgad non",
+      "Source": "Sovgad sous",
+      "Target": "sib sovgad",
+      "type": "kalite sovgad"
+    },
+    "Interface": {
+      "take_choice": "Chwazi yon opsyon nan lis ki anba la a",
+      "Add": "Ajoute",
+      "Modify": "Modifye",
+      "Delete": "Pou efase",
+      "Read": "Li",
+      "Execute": "Kouri sovgad",
+      "Sequential": "Sovgad sekans",
+      "Quit": "Pou kite",
+      "Option": "Opsyon w la",
+      "press_any_key": "Peze yon bouton pou f�men konsole a..."
+    }
+  }
+
+}
