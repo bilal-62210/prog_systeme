@@ -46,3 +46,27 @@ C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git_v2\a
 C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git_v2\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2.genruntimeconfig.cache
 C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git_v2\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\acceuil_sauvegarde.baml
 C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git_v2\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\MainWindow.baml
+C:\deploiement\appinterfacev2\appinterfacev2\bin\Debug\netcoreapp3.1\appinterfacev2.exe
+C:\deploiement\appinterfacev2\appinterfacev2\bin\Debug\netcoreapp3.1\appinterfacev2.deps.json
+C:\deploiement\appinterfacev2\appinterfacev2\bin\Debug\netcoreapp3.1\appinterfacev2.runtimeconfig.json
+C:\deploiement\appinterfacev2\appinterfacev2\bin\Debug\netcoreapp3.1\appinterfacev2.runtimeconfig.dev.json
+C:\deploiement\appinterfacev2\appinterfacev2\bin\Debug\netcoreapp3.1\appinterfacev2.dll
+C:\deploiement\appinterfacev2\appinterfacev2\bin\Debug\netcoreapp3.1\appinterfacev2.pdb
+C:\deploiement\appinterfacev2\appinterfacev2\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2.csproj.AssemblyReference.cache
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\acceuil_sauvegarde.g.cs
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\App.g.cs
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2_MarkupCompile.cache
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2_MarkupCompile.lref
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\acceuil_sauvegarde.baml
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\MainWindow.baml
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2.g.resources
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2.GeneratedMSBuildEditorConfig.editorconfig
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2.AssemblyInfoInputs.cache
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2.AssemblyInfo.cs
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2.csproj.CoreCompileInputs.cache
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2.csproj.CopyComplete
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2.dll
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2.pdb
+C:\deploiement\appinterfacev2\appinterfacev2\obj\Debug\netcoreapp3.1\appinterfacev2.genruntimeconfig.cache

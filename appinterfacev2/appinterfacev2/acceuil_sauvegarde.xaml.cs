@@ -31,7 +31,7 @@ namespace appinterfacev2
         public delegate String del_JSON(string path, string search);
         public void langue()
         {
-            string path = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\langue.json";
+            string path = "C:\\EasySave\\lang\\lang.json";
             string search = MainWindow.choix + ".Save.Name";
             string search1 = MainWindow.choix + ".Save.Source";
             string search2 = MainWindow.choix + ".Save.Target";

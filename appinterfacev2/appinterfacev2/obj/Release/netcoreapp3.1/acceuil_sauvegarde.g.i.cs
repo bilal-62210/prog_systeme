@@ -213,7 +213,7 @@ namespace appinterfacev2 {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/appinterfacev2_j2kijii3_wpftmp;component/acceuil_sauvegarde.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/appinterfacev2;V1.0.0.0;component/acceuil_sauvegarde.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\acceuil_sauvegarde.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

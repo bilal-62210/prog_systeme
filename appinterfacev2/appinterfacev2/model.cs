@@ -67,10 +67,11 @@ namespace appinterfacev2
         public static ComboBox extent = new ComboBox();
         public static ProgressBar bar = new ProgressBar();
         public static CancellationTokenSource _token = null;
-        string pathJournalierXML = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\log.xml";
-        string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\save1.json";
-        string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\journalier.json";
-        string pathAvancement = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\avancement.json";
+        string cryptosoft = "C:\\CryptoSoft\\CryptoSoftV1.0.exe";
+        string pathJournalierXML = "C:\\EasySave\\xml\\log.xml";
+        string jsonpath = "C:\\EasySave\\json\\save.json";
+        string pathjournalier = "C:\\EasySave\\logs\\log_journalier.json";
+        string pathAvancement = "C:\\EasySave\\logs\\log_avancement.json";
         public void pascontent()
         {
             string pascontent = char.ConvertFromUtf32(0x1F624);
@@ -84,7 +85,7 @@ namespace appinterfacev2
         //methode permettant de lire les json
         public void Read()
         {
-            StreamReader r = new StreamReader(@"C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\save1.json");
+            StreamReader r = new StreamReader(jsonpath);
             string json = r.ReadToEnd();
             List<data> table = JsonConvert.DeserializeObject<List<data>>(json);
             List<Items> items = new List<Items>();
@@ -441,7 +442,7 @@ namespace appinterfacev2
                             Stopwatch stopwatch = new Stopwatch();
                             stopwatch.Start();
                             Process p = new Process();
-                            p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git_v2\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
+                            p.StartInfo.FileName = cryptosoft;
                             string str = source.ToString() + " " + target.ToString() + " " + chiffre.ToString();
                             p.StartInfo.Arguments = str;
                             p.Start();
@@ -548,7 +549,7 @@ namespace appinterfacev2
                         Stopwatch stopwatch = new Stopwatch();
                         stopwatch.Start();
                         Process p = new Process();
-                        p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git_v2\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
+                        p.StartInfo.FileName = cryptosoft;
                         string str = source.ToString() + " " + target.ToString() + " " + chiffre.ToString();
                         p.StartInfo.Arguments = str;
                         p.Start();

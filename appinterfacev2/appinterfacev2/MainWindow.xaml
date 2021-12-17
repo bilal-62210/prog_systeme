@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:appinterfacev2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="820">
+        Title="Main Window - Prosoft Technology" Height="480" Width="820"
+        Icon="C:\\deploiement\\appinterfacev2\\icon.png">
     <Grid Margin="0,0,0,-6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
