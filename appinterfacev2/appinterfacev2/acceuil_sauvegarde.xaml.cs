@@ -59,8 +59,6 @@ namespace appinterfacev2
             btn_modify.Content = del_js.Invoke(path, search6);
             btn_supprimer.Content = del_js.Invoke(path, search7);
             btn_lire.Content = del_js.Invoke(path, search8);
-            btn_executer.Content = del_js.Invoke(path, search9);
-            btn_sequentiel.Content = del_js.Invoke(path, search10);
             btn_retour.Content = del_js.Invoke(path, search12);
             label_priorite.Content = del_js.Invoke(path, search13);
             label_journalier.Content = del_js.Invoke(path, search14);
@@ -122,22 +120,6 @@ namespace appinterfacev2
             text_box_nom.Text = "";
         }
 
-        private void btn_executer_Click(object sender, RoutedEventArgs e)
-        {
-            freeze();
-            model executer = new model();
-            executer.Save(text_box_nom.Text);
-            text_box_nom.Text = "";
-        }
-
-        private void btn_sequentiel_Click(object sender, RoutedEventArgs e)
-        {
-            /* freeze();
-             model sequentiel = new model();
-             sequentiel.SequentialSave();*/
-
-        }
-
         private void btn_modify_Click(object sender, RoutedEventArgs e)
         {
             model modifier = new model();
@@ -171,7 +153,7 @@ namespace appinterfacev2
         private void txt_priorite_TextChanged(object sender, TextChangedEventArgs e) { }
         private void Click_Data_Play(object sender, RoutedEventArgs e)
         {
-            //model.Play();
+            freeze();
             model c = new model();
             c.play();
             freeze();
@@ -182,7 +164,8 @@ namespace appinterfacev2
         }
         private void Click_Data_Stop(object sender, RoutedEventArgs e)
         {
-
+            model stop = new model();
+            stop.stop();
         }
 
         private void DataRead_SelectionChanged(object sender, SelectionChangedEventArgs e)

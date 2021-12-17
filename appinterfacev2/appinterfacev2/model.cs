@@ -22,7 +22,7 @@ using System.Collections.ObjectModel;
 using System.Threading;
 using System.Xml.Serialization;
 using System.ComponentModel;
-
+using System.Threading.Tasks;
 
 namespace appinterfacev2
 {
@@ -62,9 +62,11 @@ namespace appinterfacev2
         public string priorite;
         public string Log;
         public Thread thr;
+        public static Task task;
         public static DataGrid set = new DataGrid();
         public static ComboBox extent = new ComboBox();
         public static ProgressBar bar = new ProgressBar();
+        public static CancellationTokenSource _token = null;
         string pathJournalierXML = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\log.xml";
         string jsonpath = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\save1.json";
         string pathjournalier = "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git_v2\\appinterfacev2\\appinterfacev2\\journalier.json";
@@ -74,7 +76,6 @@ namespace appinterfacev2
             string pascontent = char.ConvertFromUtf32(0x1F624);
             MessageBox.Show(pascontent + pascontent + pascontent + pascontent + pascontent + pascontent + pascontent);
         }
-
         public void content()
         {
             string content = char.ConvertFromUtf32(0x1F601);
@@ -308,8 +309,38 @@ namespace appinterfacev2
             content();
         }
         //methode permettant d'executer les travaux
-        public void Save(string ChoixNom)
+        public void play()
         {
+            _token = new CancellationTokenSource();
+             var token = _token.Token;
+
+            Items items = set.SelectedItem as Items;
+            var nom = items.Nom;
+
+            try
+            {
+                task = Task.Run(() =>
+                {
+                    thr = new Thread(new ThreadStart(() => Save(nom, token)));
+                    thr.Name = nom;
+                    thr.IsBackground = true;
+                    thr.Start();
+                });
+            }
+            catch (OperationCanceledException)
+            {
+                MessageBox.Show("error");
+            }
+        }
+        public void stop()
+        {
+            _token.Cancel();
+            _token.Dispose();
+           
+        }
+        public void Save(string ChoixNom, CancellationToken token)
+        {
+
             var jsonText = File.ReadAllText(jsonpath);
             var Data = JsonConvert.DeserializeObject<List<data>>(jsonText);
 
@@ -353,31 +384,34 @@ namespace appinterfacev2
                         int FileToDo = TotalFiles;
 
 
+
                         //on recupère la taille en octets du dossier
                         foreach (string F in Files)
                         {
-                            var fileName = System.IO.Path.GetFileName(F);
-                            var destFile = System.IO.Path.Combine(Target, fileName);
-                            var prio = System.IO.Path.GetFileNameWithoutExtension(F);
-
-
-                            if (prioritee != null)
+                            try
                             {
-                                foreach (string C in Files.Where(x => fileName == prio + prioritee))
+
+                                var fileName = System.IO.Path.GetFileName(F);
+                                var destFile = System.IO.Path.Combine(Target, fileName);
+                                var prio = System.IO.Path.GetFileNameWithoutExtension(F);
+
+
+                                if (prioritee != null)
                                 {
-                                    File.Copy(C, destFile, true);
+
+                                    foreach (string C in Files.Where(x => fileName == prio + prioritee))
+                                    {
+                                        File.Copy(C, destFile, true);
+                                    }
                                 }
-                            }
+                                if (token.IsCancellationRequested)
+                                {
+                                    token.ThrowIfCancellationRequested();
+                                }
+                                File.Copy(F, destFile, true);
 
-                            File.Copy(F, destFile, true);
-                            TotalSize += F.Length;
-                        }
-
-                        Size = TotalSize;
-                        foreach (var s in files)
-                        {
-                            for (int i = 0; i < TotalFiles; i++)
-                            {
+                                TotalSize += F.Length;
+                                Size = TotalSize;
                                 FileToDo--;
                                 // quand on a plus de fichiers à copier, on met tout à zéro
                                 if (FileToDo == 0)
@@ -392,35 +426,45 @@ namespace appinterfacev2
                                     avancement(Name, Source, Target, state, TotalFiles, TotalSize, FileToDo, Progression);
                                 }
                                 avancement(Name, Source, Target, state, TotalFiles, TotalSize, FileToDo, Progression);
-                                // MessageBox.Show(FileToDo.ToString());
+                            }
+                            catch
+                            {
+                                Thread.Sleep(10);
                             }
                         }
-                        //MessageBox.Show("save terminé");
-                        Stopwatch stopwatch = new Stopwatch();
-                        stopwatch.Start();
-                        Process p = new Process();
-                        p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git_v2\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
-                        string str = source.ToString() + " " + target.ToString() + " " + chiffre.ToString();
-                        p.StartInfo.Arguments = str;
-                        p.Start();
-                        p.WaitForExit();
-                        stopwatch.Stop();
-                        //fin timer
-                        sw.Stop();
-                        //MessageBox.Show("encrypt terminé");
-                        TimeSpan Timer = sw.Elapsed;
-                        TimeSpan temps = stopwatch.Elapsed;
                         try
                         {
-                            Journalier(Name, source, target, Size, Timer, priorite, chiffres, temps);
-
-                            // MessageBox.Show("journalier  terminé");
+                            if (token.IsCancellationRequested)
+                            {
+                                token.ThrowIfCancellationRequested();
+                            }
+                            Stopwatch stopwatch = new Stopwatch();
+                            stopwatch.Start();
+                            Process p = new Process();
+                            p.StartInfo.FileName = @"C:\Users\bbila\OneDrive - Association Cesi Viacesi mail\A3\prog_systeme\git_v2\app_cryptosoft\app_cryptosoft\bin\Debug\netcoreapp3.1\app_cryptosoft.exe";
+                            string str = source.ToString() + " " + target.ToString() + " " + chiffre.ToString();
+                            p.StartInfo.Arguments = str;
+                            p.Start();
+                            p.WaitForExit();
+                            stopwatch.Stop();
+                            //fin timer
+                            sw.Stop();
+                            TimeSpan Timer = sw.Elapsed;
+                            TimeSpan temps = stopwatch.Elapsed;
+                            try
+                            {
+                                Journalier(Name, source, target, Size, Timer, chiffres, priorite, temps);
+                            }
+                            catch
+                            {
+                                Thread.Sleep(500);
+                            }
+                            content();
                         }
                         catch
                         {
-                            Thread.Sleep(500);
+                            MessageBox.Show("Interrupted / Interrompu");
                         }
-                        content();
                     }
 
                     //si c'est pas complet, c'est différentiel
@@ -437,38 +481,44 @@ namespace appinterfacev2
                         string state = "Active";
 
                         int TotalFiles = 0;
+                        int Size = 0;
 
                         foreach (string f in files)
                         {
                             foreach (string F in Files)
                             {
-
-                                if (f.Length != F.Length)
+                                try
                                 {
-                                    var fileName = System.IO.Path.GetFileName(f);
-                                    var destFile = System.IO.Path.Combine(Target, fileName);
-                                    var prio = System.IO.Path.GetFileNameWithoutExtension(f);
-                                    if (prioritee != null)
+                                    if (f.Length != F.Length)
                                     {
-                                        foreach (string C in Files.Where(x => fileName == prio + prioritee))
+                                        var fileName = System.IO.Path.GetFileName(f);
+                                        var destFile = System.IO.Path.Combine(Target, fileName);
+                                        var prio = System.IO.Path.GetFileNameWithoutExtension(f);
+                                        if (prioritee != null)
                                         {
-                                            File.Copy(C, destFile, true);
+                                            foreach (string C in Files.Where(x => fileName == prio + prioritee))
+                                            {
+                                                File.Copy(C, destFile, true);
+                                            }
                                         }
+
+                                        File.Copy(f, destFile, true);
+
+                                        TotalSize += f.Length - F.Length;
+                                        TotalFiles += 1;
+                                        Size = TotalSize;
                                     }
-
-                                    File.Copy(f, destFile, true);
-
-                                    TotalSize += f.Length - F.Length;
-                                    TotalFiles += 1;
                                 }
+                                catch
+                                {
+                                    Thread.Sleep(100);
+                                }
+
                             }
                         }
-
-                        int Size = TotalSize;
                         float Progression = 0;
                         var sw = Stopwatch.StartNew();
                         int FileToDo = TotalFiles;
-
                         foreach (string s in files)
                         {
                             foreach (string S in Files)
@@ -507,7 +557,7 @@ namespace appinterfacev2
                         sw.Stop();
                         TimeSpan Timer = sw.Elapsed;
                         TimeSpan temps = stopwatch.Elapsed;
-                        Journalier(Name, source, target, Size, Timer, priorite, chiffre, temps);
+                        Journalier(Name, source, target, Size, Timer, chiffres, priorite, temps);
                         content();
                     }
                 }
@@ -521,17 +571,7 @@ namespace appinterfacev2
                 Directory.CreateDirectory(Target);
             }
         }
-        public void play()
-        {
-            Items items = set.SelectedItem as Items;
-            var nom = items.Nom;
 
-            //Save Play = new Save();
-            thr = new Thread(() => Save(nom));
-            thr.Name = nom;
-            thr.IsBackground = true;
-            thr.Start();
-        }
         protected static string AskForJsonFileName(string JsonPath)
         {
             BEGIN:
@@ -693,7 +733,6 @@ namespace appinterfacev2
             public string TotalFilesSize { get; set; }
             public string NbFilesLeftToDo { get; set; }
         }
-
     }
     public class log_journalier
     {

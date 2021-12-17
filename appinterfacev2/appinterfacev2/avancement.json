@@ -1,13 +1,13 @@
 [
   {
     "Name": "save1",
-    "Source": "",
-    "Target": "",
-    "State": "END",
+    "Source": "C:\\debut",
+    "Target": "C:\\fin",
+    "State": "Active",
     "progression": "0",
-    "TotalFilesToCopy": "0",
-    "TotalFilesSize": "0",
-    "NbFilesLeftToDo": "0"
+    "TotalFilesToCopy": "137",
+    "TotalFilesSize": "586",
+    "NbFilesLeftToDo": "122"
   },
   {
     "Name": "save2",

@@ -1109,5 +1109,38 @@
     "chiffrement": ".txt",
     "prio": "*.txt",
     "encrypttime": "00:00:00.1953210"
+  },
+  {
+    "Nom": "save1",
+    "Sources": "C:\\debut",
+    "Cible": "C:\\fin",
+    "size": "4599",
+    "filetransfertime": "00:00:33.3890908",
+    "time": "2021-12-17T08:58:40.3983925+01:00",
+    "chiffrement": "*.txt *.pdf",
+    "prio": ".txt",
+    "encrypttime": "00:00:01.7898303"
+  },
+  {
+    "Nom": "save2",
+    "Sources": "C:\\Users\\bbila\\OneDrive\\Jibril",
+    "Cible": "c:\\fin2",
+    "size": "244",
+    "filetransfertime": "00:00:00.2490404",
+    "time": "2021-12-17T10:30:08.550216+01:00",
+    "chiffrement": "*.txt",
+    "prio": ".txt",
+    "encrypttime": "00:00:00.1868172"
+  },
+  {
+    "Nom": "save2",
+    "Sources": "C:\\Users\\bbila\\OneDrive\\Jibril",
+    "Cible": "c:\\fin2",
+    "size": "244",
+    "filetransfertime": "00:00:00.2143725",
+    "time": "2021-12-17T10:41:18.7115931+01:00",
+    "chiffrement": "*.txt",
+    "prio": ".txt",
+    "encrypttime": "00:00:00.1912619"
   }
 ]
