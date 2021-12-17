@@ -53,7 +53,21 @@ La version **_V2.0_** du logiciel EasySave à était développé par nos soins a
 Pour utiliser cette version en sa totalité il sera nécessaire d'installer le logiciel **_CryptoSoftV1.0_** qui vous propose de chiffrer les types de fichiers de votre choix. (voir section CryptoSoftV1.0).
 
 
-Application / logiciel **_V1.1_** : https://github.com/bilal-62210/prog_systeme/tree/Deploy-V2.0
+Application / logiciel **_V2.0_** : https://github.com/bilal-62210/prog_systeme/tree/Deploy-V2.0
+
+
+## Patch note / Note de mise à jour V3.0
+Version **_V3.0_** brings the first brick of intelligent management of job backups.
+**_A neat and ergonomic HMI, as well as the creation of unlimited jobs with backup being carried out in parallel for more speed._**
+To use this version in its entirety, it will be necessary to install the software **_CryptoSoftV1.0_** which will offer you to encrypt the types of files of your choice. (see section CryptoSoftV1.0).
+
+
+La version **_V3.0_** apporte la première brique de la gestion intelligente des sauvegardes des travaux.
+**_Une IHM soignée et ergonomique, ainsi que la création de travaux illimités avec sauvegarde se réalisant en parallèle pour plus de rapidité._**
+Pour utiliser cette version en sa totalité il sera nécessaire d'installer le logiciel **_CryptoSoftV1.0_** qui vous propose de chiffrer les types de fichiers de votre choix. (voir section CryptoSoftV1.0).
+
+
+Application / logiciel **_V3.0_** : https://github.com/bilal-62210/prog_systeme/tree/Deploy-V3.0
 
 
 
