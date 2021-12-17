@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:appinterfacev2"
         mc:Ignorable="d"
-        Title="acceuil_sauvegarde" Height="600" Width="1080">
+        Title="Save Menu - Prosoft Technology" Height="600" Width="1080"
+        Icon="C:\\deploiement\\appinterfacev2\\icon.png">
     <Grid>
         <Label x:Name="label_nom" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="153" Content=""/>
         <TextBox x:Name="text_box_nom" HorizontalAlignment="Left" Margin="179,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" Background="#FFD4D4D4"/>
@@ -38,15 +39,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <ProgressBar Value="{Binding Path=Progress, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" Width="150" Height="30"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Name" Binding="{Binding Path=Nom}" Width="Auto"/>
                 <DataGridTextColumn Header="Source" Binding="{Binding Path=Sources}" Width="Auto"/>
                 <DataGridTextColumn Header="Target" Binding="{Binding Path=Cible}" Width="Auto"/>
@@ -60,8 +52,6 @@
         <Button x:Name="btn_modify" Content="" HorizontalAlignment="Left" Margin="266,522,0,0" VerticalAlignment="Top" Width="66" Click="btn_modify_Click"/>
         <Button x:Name="btn_supprimer" Content="" HorizontalAlignment="Left" Margin="402,522,0,0" VerticalAlignment="Top" Height="20" Width="72" Click="btn_supprimer_Click"/>
         <Button x:Name="btn_lire" Content="" HorizontalAlignment="Left" Margin="559,522,0,0" VerticalAlignment="Top" Height="20" Width="54" Click="btn_lire_Click"/>
-        <Button x:Name="btn_executer" Content="" HorizontalAlignment="Left" Margin="721,522,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.589,0.568" Click="btn_executer_Click"/>
-        <Button x:Name="btn_sequentiel" Content="" HorizontalAlignment="Left" Margin="916,522,0,0" VerticalAlignment="Top" Click="btn_sequentiel_Click"/>
         <Label x:Name="label_chiffre" Content="" HorizontalAlignment="Left" Margin="10,347,0,0" VerticalAlignment="Top" Width="153"/>
         <TextBox x:Name="txt_chiffre" HorizontalAlignment="Left" Margin="179,351,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="#FFD4D4D4"/>
         <Button x:Name="btn_retour" Content=""  Margin="28,32,0,0" Width="40" Click="btn_retour_Click" VerticalAlignment="Top" HorizontalAlignment="Left"/>

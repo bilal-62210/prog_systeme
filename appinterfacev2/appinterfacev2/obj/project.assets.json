@@ -48,23 +48,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bbila\\.nuget\\packages\\": {},
+    "C:\\Users\\thoma\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\appinterfacev2.csproj",
+      "projectUniqueName": "C:\\deploiement\\appinterfacev2\\appinterfacev2\\appinterfacev2.csproj",
       "projectName": "appinterfacev2",
-      "projectPath": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\appinterfacev2.csproj",
-      "packagesPath": "C:\\Users\\bbila\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\obj\\",
+      "projectPath": "C:\\deploiement\\appinterfacev2\\appinterfacev2\\appinterfacev2.csproj",
+      "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
+      "outputPath": "C:\\deploiement\\appinterfacev2\\appinterfacev2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\bbila\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

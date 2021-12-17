@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "q3HSLojpIgKOWLqem1bqIy/j+NGusKDoZBYX93B+Oh6a8taKuDVSBiX0zhf6xrxNgVujuf5vUTq2QO2EwDV/fA==",
+  "dgSpecHash": "fUbD8nxnJ9EWIPg8rzjsGEx/c6LPZcI11MFvpcAEyYllURn0EbPOs+Kk3PUTutYybyHxr5wNDRgqygIlVbZRJg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bbila\\OneDrive - Association Cesi Viacesi mail\\A3\\prog_systeme\\git\\appinterfacev2\\appinterfacev2\\appinterfacev2.csproj",
+  "projectFilePath": "C:\\deploiement\\appinterfacev2\\appinterfacev2\\appinterfacev2.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\bbila\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\thoma\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }
